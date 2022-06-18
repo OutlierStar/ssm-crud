@@ -8,6 +8,7 @@
 <title>员工列表</title>
 <%
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
+	/*45645*/
 %>
 <!-- web路径：
 不以/开始的相对路径，找资源，以当前资源的路径为基准，经常容易出问题。
