@@ -193,16 +193,16 @@
 		function to_page(pn){
 			$.ajax({
 				url:"${APP_PATH}/emps",
-				data:"pn="+pn,
+				//data:"pn="+pn,
 				type:"GET",
 				success:function(result){
 					//console.log(result);
 					//1、解析并显示员工数据
-					build_emps_table(result);
+					//build_emps_table(result);
 					//2、解析并显示分页信息
-					build_page_info(result);
+					//build_page_info(result);
 					//3、解析显示分页条数据
-					build_page_nav(result);
+					//build_page_nav(result);
 				}
 			});
 		}
