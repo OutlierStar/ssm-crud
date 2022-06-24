@@ -19,6 +19,13 @@ public interface UserMapper {
     List<User> selectByExample(UserExample example);
 
     User selectByPrimaryKey(Integer userId);
+    
+    /**
+     * 通过账号和密码获取用户信息
+     * @param user
+     * @return
+     */
+    User selectByUserNameAndPsd(User user);
 
     int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
 

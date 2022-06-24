@@ -12,10 +12,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.atguigu.crud.bean.Employee;
+
 import com.atguigu.crud.bean.User;
-import com.atguigu.crud.dao.DepartmentMapper;
-import com.atguigu.crud.dao.EmployeeMapper;
+
 import com.atguigu.crud.dao.UserMapper;
 
 /**
@@ -45,10 +44,6 @@ public class MapperTest {
 	@Test
 	public void testCRUD(){
 	
-		ApplicationContext ioc = new ClassPathXmlApplicationContext("applicationContext.xml");
-	
-		DepartmentMapper bean = ioc.getBean(DepartmentMapper.class);
-		System.out.println(userMapper);
 		
 		//1、插入几个部门
 //		departmentMapper.insertSelective(new Department(null, "开发部"));
@@ -62,10 +57,11 @@ public class MapperTest {
 //		for(){
 //			employeeMapper.insertSelective(new Employee(null, , "M", "Jerry@atguigu.com", 1));
 //		}
-		/*UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+		
+		UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 		List<User> user= mapper.selectByExample(null);
 		for(User t:user)
-		System.out.println(t.getUserName());*/
+		System.out.println(t.getUserName());
 		
 	}
 

@@ -7,8 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.atguigu.crud.bean.Department;
-import com.atguigu.crud.bean.Msg;
+
 import com.atguigu.crud.bean.User;
 import com.atguigu.crud.dao.UserMapper;
 import com.atguigu.crud.service.UserService;
@@ -24,8 +23,12 @@ public class UserController {
 	
 	@RequestMapping("/emps")	
 	public void  getDepts(){
-			List<User> list = userService.getAllUser();
-		for(User t:list)
+//			List<User> list = userService.getAllUser();
+//		for(User t:list)
+//			System.out.println(t.getUserName());
+		
+		
+		User t = userService.check("123", "123");
 			System.out.println(t.getUserName());
 	}
 	
