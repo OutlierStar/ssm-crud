@@ -21,6 +21,9 @@ import com.atguigu.crud.dao.ShoppingCartMapper;
 public class ShoppingCartService {
 	@Autowired
 	private ShoppingCartMapper shoppingCartMapper;
+	private OrdersMapper ordersMapper;
+	private OrderService orderService;
+	private OrderInformationMapper orderInformationMapper;
 	/**
 	 * 顾客使用
 	 * 添加菜品，加入购物车
@@ -89,13 +92,9 @@ public class ShoppingCartService {
 	public void SubmitShoppingCart(User user)
 	{
 		
-		OrdersMapper ordersMapper;
-		OrderService orderService;
-		OrderInformationMapper orderInformationMapper;
+		
 		List<ShoppingCart> list=getAllShoppingCart(user);
-		
-		//List<Orders> orderlist= new ArrayList<Orders>();
-		
+				
 		for(ShoppingCart t:list) {
 			
 			Orders od = new Orders();
