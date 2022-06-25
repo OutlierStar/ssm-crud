@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.atguigu.crud.bean.Orders;
+import com.atguigu.crud.bean.OrdersExample;
 import com.atguigu.crud.bean.User;
+import com.atguigu.crud.bean.UserExample;
+import com.atguigu.crud.controller.ordersController;
 import com.atguigu.crud.dao.OrdersMapper;
 
 @Service
@@ -22,8 +25,7 @@ public class OrderService {
 	 */
 	public List<Orders> getAllOrders()
 	{
-		
-		return null;
+		return ordersMapper.selectByExample(null);
 	}
 	/**
 	 * 顾客使用
@@ -33,7 +35,13 @@ public class OrderService {
 	 */
 	public List<Orders> getOrdersByUser(User user)
 	{
-		return null;
+		
+		
+		OrdersExample order = new OrdersExample();
+		OrdersExample.Criteria criteria = order.createCriteria();
+		criteria.andUserIdEqualTo(user.getUserId());
+		
+		return ordersMapper.selectByExample(order);
 		
 	}
 	/**
@@ -45,7 +53,7 @@ public class OrderService {
 	public void updateOrders(Orders orders)
 	{
 		
-		
+		ordersMapper.updateByPrimaryKeySelective(orders);
 		
 	}
 	
@@ -57,7 +65,7 @@ public class OrderService {
 	 */
 	public void insertOrders(Orders orders)
 	{
-		
+		ordersMapper.insertSelective(orders);
 		
 	}
 	

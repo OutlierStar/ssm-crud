@@ -20,7 +20,7 @@ public class SortService {
 	 */
 	public List<Sort> getAllSort()
 	{
-		return null;
+		return sortMapper.selectByExample(null);
 		
 	}
 	
@@ -33,7 +33,7 @@ public class SortService {
 	public void insertSort(Sort sort)
 	{
 	
-		
+		sortMapper.insertSelective(sort);
 		
 	}
 	
@@ -46,7 +46,7 @@ public class SortService {
 	public void deleteSort(Sort sort)
 	{
 		
-		
+		sortMapper.deleteByPrimaryKey(sort.getSortId());
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class SortService {
 	 */
 	public void updateSort(Sort sort)
 	{
-		
+		sortMapper.updateByPrimaryKey(sort);
 		
 	}
 	

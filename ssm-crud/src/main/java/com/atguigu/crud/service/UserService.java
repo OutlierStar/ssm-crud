@@ -67,11 +67,22 @@ public class UserService {
 	 * @param users
 	 * @return 
 	 */
-	public void UpdateUser(User user)
+	public void updateUser(User user)
 	{
 		
 		 userMapper.updateByPrimaryKey(user);
 		
+	}
+	
+	
+	/**
+	 * 注册用户
+	 * @param users
+	 */
+	public void insertUser(User user)
+	{
+		
+		userMapper.insertSelective(user);
 	}
 	
 	
