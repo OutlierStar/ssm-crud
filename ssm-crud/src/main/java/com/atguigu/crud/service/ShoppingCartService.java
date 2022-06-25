@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.atguigu.crud.bean.ShoppingCart;
+import com.atguigu.crud.bean.User;
 import com.atguigu.crud.dao.ShoppingCartMapper;
 
 @Service
