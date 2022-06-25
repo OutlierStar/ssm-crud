@@ -26,39 +26,39 @@ public class SortService {
 	
 	/**
 	 * 餐厅使用
-	 * 添加分类，返回Boolean
+	 * 添加分类
 	 * @param sort
-	 * @return boolean
+	 * @return
 	 */
-	public boolean insertSort(Sort sort)
+	public void insertSort(Sort sort)
 	{
-		return true;
+	
 		
 		
 	}
 	
 	/**
 	 * 餐厅使用
-	 * 删除分类，返回Boolean
+	 * 删除分类
 	 * @param sort
-	 * @return boolean
+	 * @return 
 	 */
-	public boolean deleteSort(Sort sort)
+	public void deleteSort(Sort sort)
 	{
 		
-		return true;
+		
 	}
 	
 	/**
 	 * 餐厅使用
-	 * 修改分类，返回Boolean
+	 * 修改分类
 	 * @param sort
-	 * @return Boolean
+	 * @return 
 	 */
-	public boolean updateSort(Sort sort)
+	public void updateSort(Sort sort)
 	{
 		
-		return true;
+		
 	}
 	
 	

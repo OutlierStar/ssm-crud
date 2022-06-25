@@ -48,31 +48,33 @@ public class UserService {
 	
 	public User check(String account,String password)
 	{
-		return null;
 		
-//		  UserExample user = new UserExample();
-//		  
-//		  user.getOredCriteria().get(0).andUserAccountEqualTo(account);
-//		  user.getOredCriteria().get(0).andUserPasswordEqualTo(password);
-//		  
-//		  return (User) userMapper.selectByExample(user);
-//		 
-//		User user = new User();
-//		user.setUserAccount(account);
-//		user.setUserPassword(password);
-//		return userMapper.selectByUserNameAndPsd(user);
+		
+		  UserExample user = new UserExample();
+		  
+		  UserExample.Criteria criteria = user.createCriteria(); //构造自定义查询条件
+	      criteria.andUserAccountEqualTo(account);
+	      criteria.andUserPasswordEqualTo(password);	      
+	      
+	      List<User> t = userMapper.selectByExample(user);
+	      
+	      return t.get(0);
+	      
 	}
 	/**
 	 * 顾客使用
-	 * 修改个人信息，返回boolean 
+	 * 修改个人信息
 	 * @param users
-	 * @return Boolean
+	 * @return 
 	 */
-	public boolean UpdateUser(User users)
+	public void UpdateUser(User user)
 	{
 		
-		return true;
+		 userMapper.updateByPrimaryKey(user);
+		
 	}
+	
+	
 	
 	
 }

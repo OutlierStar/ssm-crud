@@ -40,25 +40,25 @@ public class OrderService {
 	 * 顾客使用
 	 * 修改订单（评论）
 	 * @param orders
-	 * @return boolean 
+	 * @return 
 	 */
-	public boolean updateOrders(Orders orders)
+	public void updateOrders(Orders orders)
 	{
 		
-		return true;
+		
 		
 	}
 	
 	/**
 	 * 顾客提交购物车时使用
-	 * 添加订单，返回Boolean
+	 * 添加订单
 	 * @param orders
-	 * @return boolean
+	 * @return 
 	 */
-	public boolean insertOrders(Orders orders)
+	public void insertOrders(Orders orders)
 	{
 		
-		return true;
+		
 	}
 	
 	

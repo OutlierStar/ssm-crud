@@ -11,7 +11,7 @@ public interface UserMapper {
     //自定义条件删除
     int deleteByExample(UserExample example);
     //通过主键删除
-    int deleteByPrimaryKey(Integer userId);
+    Integer deleteByPrimaryKey(Integer userId);
     //插入所有
     int insert(User record);
     //插入非空

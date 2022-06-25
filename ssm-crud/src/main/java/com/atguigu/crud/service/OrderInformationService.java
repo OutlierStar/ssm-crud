@@ -41,12 +41,12 @@ public class OrderInformationService {
 	 * 顾客使用
 	 * 修改订单信息（数量）
 	 * @param orders
-	 * @return Boolean
+	 * @return 
 	 */
-	public boolean updateOrderInformation(OrderInformation orderInformation)
+	public void updateOrderInformation(OrderInformation orderInformation)
 	{
 		
-		return true;
+		
 		
 	}
 	
@@ -54,12 +54,12 @@ public class OrderInformationService {
 	 * 顾客提交购物车时使用
 	 * 添加一条订单信息
 	 * @param orders
-	 * @return Boolean
+	 * @return 
 	 */
-	public boolean insertOrderInformation(OrderInformation orderInformation)
+	public void insertOrderInformation(OrderInformation orderInformation)
 	{
 		
-		return true;
+		
 	}
 	
 }
