@@ -5,6 +5,8 @@
     <result column="restaurant_name" jdbcType="VARCHAR" property="restaurantName" />
     <result column="restaurant_address" jdbcType="VARCHAR" property="restaurantAddress" />
     <result column="restaurant_notice" jdbcType="VARCHAR" property="restaurantNotice" />
+    <result column="restaurant_account" jdbcType="VARCHAR" property="restaurantAccount" />
+    <result column="restaurant_password" jdbcType="VARCHAR" property="restaurantPassword" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    restaurant_name, restaurant_address, restaurant_notice
+    restaurant_name, restaurant_address, restaurant_notice, restaurant_account, restaurant_password
   </sql>
   <select id="selectByExample" parameterType="com.atguigu.crud.bean.RestaurantExample" resultMap="BaseResultMap">
     select
@@ -89,9 +91,11 @@
   </delete>
   <insert id="insert" parameterType="com.atguigu.crud.bean.Restaurant">
     insert into Restaurant (restaurant_name, restaurant_address, 
-      restaurant_notice)
+      restaurant_notice, restaurant_account, restaurant_password
+      )
     values (#{restaurantName,jdbcType=VARCHAR}, #{restaurantAddress,jdbcType=VARCHAR}, 
-      #{restaurantNotice,jdbcType=VARCHAR})
+      #{restaurantNotice,jdbcType=VARCHAR}, #{restaurantAccount,jdbcType=VARCHAR}, #{restaurantPassword,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.atguigu.crud.bean.Restaurant">
     insert into Restaurant
@@ -105,6 +109,12 @@
       <if test="restaurantNotice != null">
         restaurant_notice,
       </if>
+      <if test="restaurantAccount != null">
+        restaurant_account,
+      </if>
+      <if test="restaurantPassword != null">
+        restaurant_password,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="restaurantName != null">
@@ -115,6 +125,12 @@
       </if>
       <if test="restaurantNotice != null">
         #{restaurantNotice,jdbcType=VARCHAR},
+      </if>
+      <if test="restaurantAccount != null">
+        #{restaurantAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="restaurantPassword != null">
+        #{restaurantPassword,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -136,6 +152,12 @@
       <if test="record.restaurantNotice != null">
         restaurant_notice = #{record.restaurantNotice,jdbcType=VARCHAR},
       </if>
+      <if test="record.restaurantAccount != null">
+        restaurant_account = #{record.restaurantAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.restaurantPassword != null">
+        restaurant_password = #{record.restaurantPassword,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -145,7 +167,9 @@
     update Restaurant
     set restaurant_name = #{record.restaurantName,jdbcType=VARCHAR},
       restaurant_address = #{record.restaurantAddress,jdbcType=VARCHAR},
-      restaurant_notice = #{record.restaurantNotice,jdbcType=VARCHAR}
+      restaurant_notice = #{record.restaurantNotice,jdbcType=VARCHAR},
+      restaurant_account = #{record.restaurantAccount,jdbcType=VARCHAR},
+      restaurant_password = #{record.restaurantPassword,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

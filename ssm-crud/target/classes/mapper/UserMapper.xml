@@ -85,16 +85,6 @@
       order by ${orderByClause}
     </if>
   </select>
-  
-  <!--通过账号和密码获取用户信息 selectByUserNameAndPsd -->
-  <select id="selectByUserNameAndPsd" parameterType="com.atguigu.crud.bean.User" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from User
-    where user_account = #{user.userAccount,jdbcType=VARCHAR}
-    and user_password = #{user.userPassword,jdbcType=VARCHAR}
-  </select>
-  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
