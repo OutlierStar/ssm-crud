@@ -71,5 +71,17 @@ public class OrderService {
 	
 	
 	
+	public Orders seletOrderId(User user)
+	{
+		
+		OrdersExample order = new OrdersExample();
+		order.setOrderByClause("orderId desc");
+		OrdersExample.Criteria criteria = order.createCriteria();
+		criteria.andUserIdEqualTo(user.getUserId());
+		
+		return ordersMapper.selectByExample(order).get(0);
+		
+	}
+	
 	
 }
