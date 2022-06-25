@@ -38,35 +38,35 @@ public class MealsService {
 	}
 	/**
 	 * 餐厅使用
-	 * 插入菜品，返回Boolean
+	 * 插入菜品
 	 * @param meals
-	 * @return boolean
+	 * @return 
 	 */
-	public boolean insertMeals(Meals meals)
+	public void insertMeals(Meals meals)
 	{
-		return true;
+		
 		
 	}
 	
 	/**
 	 * 餐厅使用
-	 * 删除菜品，返回Boolean
+	 * 删除菜品
 	 * @param meals
-	 * @return boolean
+	 * @return 
 	 */
-	public boolean deleteMeals(Meals meals)
+	public void deleteMeals(Meals meals)
 	{
-		return true;
+		
 	}
 	/**
 	 * 餐厅使用
-	 * 修改菜品，返回Boolean
+	 * 修改菜品
 	 * @param meals
-	 * @return boolean
+	 * @return void
 	 */
-	public boolean updateMeals(Meals meals)
+	public void updateMeals(Meals meals)
 	{
-		return true;
+		
 	}
 	/**
 	 * 顾客使用，销量排行

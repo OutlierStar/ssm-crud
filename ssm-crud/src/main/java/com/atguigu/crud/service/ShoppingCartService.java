@@ -15,14 +15,14 @@ public class ShoppingCartService {
 	private ShoppingCartMapper shoppingCartMapper;
 	/**
 	 * 顾客使用
-	 * 添加菜品，加入购物车,返回Boolean
+	 * 添加菜品，加入购物车
 	 * @param shoppingcart
-	 * @return Boolean
+	 * @return 
 	 */
-	public boolean insertShoppingCart(ShoppingCart shoppingcart)
+	public void insertShoppingCart(ShoppingCart shoppingcart)
 	{
 		
-		return true;
+		
 	}
 	
 	/**
@@ -30,7 +30,7 @@ public class ShoppingCartService {
 	 * 查询购物车,返回list
 	 * @return List<ShoppingCart>
 	 */
-	public List<ShoppingCart> getAllShoppingCart()
+	public List<ShoppingCart> getAllShoppingCart(User user)
 	{
 		
 		return null;
@@ -38,38 +38,38 @@ public class ShoppingCartService {
 	
 	/**
 	 * 顾客使用
-	 * 删除购物车，返回Boolean
+	 * 删除购物车
 	 * @param shoppingcart
-	 * @return Boolean
+	 * @return 
 	 */
-	public boolean deleteShoppingCart(ShoppingCart shoppingcart)
+	public void deleteShoppingCart(ShoppingCart shoppingcart)
 	{
 		
-		return true;
+		
 		
 	}
 	
 	/**
 	 * 顾客使用
-	 * 修改购物车中菜品的信息，返回Boolean
+	 * 修改购物车中菜品的信息
 	 * @param shoppingcart
-	 * @return Boolean
+	 * @return 
 	 */
-	public boolean updateShoppingCart(ShoppingCart shoppingcart)
+	public void updateShoppingCart(ShoppingCart shoppingcart)
 	{
 		
-		return true;
+		
 		
 	}
 	/**
 	 * 顾客使用
-	 * 提交购物车,返回Boolean
-	 * @return Boolean
+	 * 提交购物车
+	 * @return 
 	 */
-	public boolean SubmitShoppingCart()
+	public void SubmitShoppingCart(User user)
 	{
 		
-		return true;
+		
 	}
 	
 }
