@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.atguigu.crud.bean.Meals;
+import com.atguigu.crud.bean.MealsExample;
 import com.atguigu.crud.bean.Sort;
+import com.atguigu.crud.bean.User;
+import com.atguigu.crud.bean.UserExample;
 import com.atguigu.crud.dao.MealsMapper;
 
 @Service
@@ -23,7 +26,12 @@ public class MealsService {
 	 */
 	public List<Meals> getMealsBySort(Sort sort)
 	{
-		return null;
+		
+		MealsExample meal = new MealsExample();
+		MealsExample.Criteria criteria = meal.createCriteria();
+		criteria.andSortIdEqualTo(sort.getSortId());
+		return mealsMapper.selectByExample(meal);
+		
 	}
 	
 	/**
@@ -34,7 +42,7 @@ public class MealsService {
 	public List<Meals> getAllMeals()
 	{
 		
-		return null;
+		return mealsMapper.selectByExample(null);
 	}
 	/**
 	 * 餐厅使用
@@ -45,7 +53,7 @@ public class MealsService {
 	public void insertMeals(Meals meals)
 	{
 		
-		
+		mealsMapper.insertSelective(meals);
 	}
 	
 	/**
@@ -56,7 +64,7 @@ public class MealsService {
 	 */
 	public void deleteMeals(Meals meals)
 	{
-		
+		mealsMapper.deleteByPrimaryKey(meals.getMealsId());
 	}
 	/**
 	 * 餐厅使用
@@ -66,7 +74,7 @@ public class MealsService {
 	 */
 	public void updateMeals(Meals meals)
 	{
-		
+		mealsMapper.updateByPrimaryKey(meals);
 	}
 	/**
 	 * 顾客使用，销量排行
@@ -75,7 +83,10 @@ public class MealsService {
 	 */
 	public List<Meals> RankMeals( )
 	{
-		return null;
+		MealsExample meal = new MealsExample();
+		meal.setOrderByClause("mealsSales desc");
+		
+		return mealsMapper.selectByExample(meal);
 	}
 	
 }

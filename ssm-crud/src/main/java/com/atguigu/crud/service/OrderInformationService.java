@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.atguigu.crud.bean.OrderInformation;
+import com.atguigu.crud.bean.OrderInformationExample;
+import com.atguigu.crud.bean.Orders;
 import com.atguigu.crud.bean.User;
+import com.atguigu.crud.bean.UserExample;
 import com.atguigu.crud.dao.OrderInformationMapper;
 
 @Service
@@ -24,17 +27,24 @@ public class OrderInformationService {
 	public List<OrderInformation> getAllOrderInformation()
 	{
 		
-		return null;
+		return orderInformationMapper.selectByExample(null);
+		
 	}
 	/**
-	 * 顾客使用
-	 * 查询个人的订单信息
-	 * @param user
-	 * @return List<OrderInformation>
+	 * 
+	 * 查询订单信息
+	 * @param order
+	 * @return
 	 */
-	public List<OrderInformation> getOrderInformationByUser(User user)
+	public List<OrderInformation> getOrderInformationByUser(Orders order)
 	{
-		return null;
+		
+		
+		OrderInformationExample or = new OrderInformationExample();
+		OrderInformationExample.Criteria criteria = or.createCriteria();
+		criteria.andOrderIdEqualTo(order.getOrderId());
+		
+		return orderInformationMapper.selectByExample(or);
 		
 	}
 	/**
@@ -46,6 +56,7 @@ public class OrderInformationService {
 	public void updateOrderInformation(OrderInformation orderInformation)
 	{
 		
+		orderInformationMapper.updateByPrimaryKeySelective(orderInformation);
 		
 		
 	}
@@ -58,7 +69,7 @@ public class OrderInformationService {
 	 */
 	public void insertOrderInformation(OrderInformation orderInformation)
 	{
-		
+		orderInformationMapper.insertSelective(orderInformation);
 		
 	}
 	
