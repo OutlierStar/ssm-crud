@@ -84,7 +84,7 @@ public class ShoppingCartService {
 	{
 		List<ShoppingCart> list=getAllShoppingCart(user);
 		
-		//for()
+		
 		
 		
 		
