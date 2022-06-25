@@ -16,6 +16,7 @@ public class RestaurantService {
 
 	@Autowired
 	private RestaurantMapper restaurantMapper;
+	
 	/**
 	 * 验证账号
 	 * @param account
@@ -25,20 +26,13 @@ public class RestaurantService {
 	public Restaurant check(String account,String password)
 	{
 		
-		/*	  UserExample user = new UserExample();
-		  
-		  UserExample.Criteria criteria = user.createCriteria(); //构造自定义查询条件
-	      criteria.andUserAccountEqualTo(account);
-	      criteria.andUserPasswordEqualTo(password);	      
-	      
-	      List<User> t = userMapper.selectByExample(user);
-	      
-	      return t.get(0);*/
-		
 		RestaurantExample re = new RestaurantExample();
 		RestaurantExample.Criteria criteria = re.createCriteria();
-		
-		
+		criteria.andRestaurantAccountEqualTo(account);
+	    criteria.andRestaurantPasswordEqualTo(password);
+	    List<Restaurant> t = restaurantMapper.selectByExample(re);
+	    
+	    return t.get(0);
 		
 	}
 	
