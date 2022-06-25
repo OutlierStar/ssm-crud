@@ -24,7 +24,6 @@ public class ShoppingCartService {
 		
 		
 	}
-	
 	/**
 	 * 顾客使用
 	 * 查询购物车,返回list
