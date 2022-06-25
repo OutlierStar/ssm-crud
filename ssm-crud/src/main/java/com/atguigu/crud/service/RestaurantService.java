@@ -11,7 +11,12 @@ public class RestaurantService {
 
 	@Autowired
 	private RestaurantMapper restaurantMapper;
-	
+	/**
+	 * 验证账号
+	 * @param account
+	 * @param password
+	 * @return Restaurant
+	 */
 	public Restaurant check(String account,String password)
 	{
 		return null;

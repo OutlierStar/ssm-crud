@@ -13,10 +13,10 @@ public class ShoppingCartService {
 	@Autowired
 	private ShoppingCartMapper shoppingCartMapper;
 	/**
-	 * 
+	 * 顾客使用
 	 * 添加菜品，加入购物车,返回Boolean
 	 * @param shoppingcart
-	 * @return
+	 * @return Boolean
 	 */
 	public boolean insertShoppingCart(ShoppingCart shoppingcart)
 	{
@@ -25,9 +25,9 @@ public class ShoppingCartService {
 	}
 	
 	/**
-	 * 
+	 * 顾客使用
 	 * 查询购物车,返回list
-	 * @return
+	 * @return List<ShoppingCart>
 	 */
 	public List<ShoppingCart> getAllShoppingCart()
 	{
@@ -36,10 +36,10 @@ public class ShoppingCartService {
 	}
 	
 	/**
-	 * 
+	 * 顾客使用
 	 * 删除购物车，返回Boolean
 	 * @param shoppingcart
-	 * @return
+	 * @return Boolean
 	 */
 	public boolean deleteShoppingCart(ShoppingCart shoppingcart)
 	{
@@ -49,10 +49,10 @@ public class ShoppingCartService {
 	}
 	
 	/**
-	 * 
+	 * 顾客使用
 	 * 修改购物车中菜品的信息，返回Boolean
 	 * @param shoppingcart
-	 * @return
+	 * @return Boolean
 	 */
 	public boolean updateShoppingCart(ShoppingCart shoppingcart)
 	{
@@ -61,9 +61,9 @@ public class ShoppingCartService {
 		
 	}
 	/**
-	 * 
+	 * 顾客使用
 	 * 提交购物车,返回Boolean
-	 * @return
+	 * @return Boolean
 	 */
 	public boolean SubmitShoppingCart()
 	{

@@ -15,8 +15,8 @@ public class UserService {
 	@Autowired
 	private UserMapper userMapper;
 	
-	/**
-	 * 获取所有用户，返回list
+	/**餐厅使用
+	 * 获取所有用户
 	 * @return List<User>
 	 */
 	public List<User> getAllUser()
@@ -25,8 +25,8 @@ public class UserService {
 	}
 	
 	/**
-	 * 
-	 * 
+	 * 顾客使用
+	 * 查询个人信息
 	 * 根据用户ID获取用户信息，返回User类
 	 * @param id
 	 * @return User
@@ -39,7 +39,7 @@ public class UserService {
 	
 	/**
 	 * 
-	 * 
+	 * 登录验证
 	 * 验证账号密码
 	 * @param account
 	 * @param password
@@ -63,10 +63,10 @@ public class UserService {
 //		return userMapper.selectByUserNameAndPsd(user);
 	}
 	/**
-	 * 
+	 * 顾客使用
 	 * 修改个人信息，返回boolean 
 	 * @param users
-	 * @return 
+	 * @return Boolean
 	 */
 	public boolean UpdateUser(User users)
 	{

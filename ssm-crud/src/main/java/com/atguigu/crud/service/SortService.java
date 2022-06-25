@@ -14,9 +14,9 @@ public class SortService {
 	private SortMapper sortMapper;
 	
 	/**
-	 * 
-	 * 查询所有分类,返回list
-	 * @return List
+	 * 顾客、餐厅使用
+	 * 查询所有分类
+	 * @return List<Sort>
 	 */
 	public List<Sort> getAllSort()
 	{
@@ -25,9 +25,10 @@ public class SortService {
 	}
 	
 	/**
+	 * 餐厅使用
 	 * 添加分类，返回Boolean
 	 * @param sort
-	 * @return
+	 * @return boolean
 	 */
 	public boolean insertSort(Sort sort)
 	{
@@ -37,10 +38,10 @@ public class SortService {
 	}
 	
 	/**
-	 * 
+	 * 餐厅使用
 	 * 删除分类，返回Boolean
 	 * @param sort
-	 * @return
+	 * @return boolean
 	 */
 	public boolean deleteSort(Sort sort)
 	{
@@ -49,10 +50,10 @@ public class SortService {
 	}
 	
 	/**
-	 * 
+	 * 餐厅使用
 	 * 修改分类，返回Boolean
 	 * @param sort
-	 * @return
+	 * @return Boolean
 	 */
 	public boolean updateSort(Sort sort)
 	{

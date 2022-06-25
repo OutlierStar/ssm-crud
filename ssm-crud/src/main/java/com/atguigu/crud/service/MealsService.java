@@ -16,10 +16,10 @@ public class MealsService {
 	@Autowired
 	private MealsMapper mealsMapper;
 	/**
-	 * 
+	 * 顾客、餐厅使用
 	 * 根据分类查询菜品 ，返回list
 	 * @param sort
-	 * @return
+	 * @return List<Meals>
 	 */
 	public List<Meals> getMealsBySort(Sort sort)
 	{
@@ -27,9 +27,9 @@ public class MealsService {
 	}
 	
 	/**
-	 * 
+	 * 餐厅使用
 	 * 获取所有菜品
-	 * @return
+	 * @return List<Meals>
 	 */
 	public List<Meals> getAllMeals()
 	{
@@ -37,10 +37,10 @@ public class MealsService {
 		return null;
 	}
 	/**
-	 * 
+	 * 餐厅使用
 	 * 插入菜品，返回Boolean
 	 * @param meals
-	 * @return
+	 * @return boolean
 	 */
 	public boolean insertMeals(Meals meals)
 	{
@@ -49,27 +49,29 @@ public class MealsService {
 	}
 	
 	/**
+	 * 餐厅使用
 	 * 删除菜品，返回Boolean
 	 * @param meals
-	 * @return
+	 * @return boolean
 	 */
 	public boolean deleteMeals(Meals meals)
 	{
 		return true;
 	}
 	/**
+	 * 餐厅使用
 	 * 修改菜品，返回Boolean
 	 * @param meals
-	 * @return
+	 * @return boolean
 	 */
 	public boolean updateMeals(Meals meals)
 	{
 		return true;
 	}
 	/**
-	 * 
+	 * 顾客使用，销量排行
 	 * 根据销量排名菜品，返回list
-	 * @return
+	 * @return List<Meals>
 	 */
 	public List<Meals> RankMeals( )
 	{

@@ -16,8 +16,9 @@ public class OrderService {
 	private OrdersMapper ordersMapper;
 	
 	/**
+	 * 餐厅使用
 	 * 查询所有订单，返回list
-	 * @return
+	 * @return List<Orders>
 	 */
 	public List<Orders> getAllOrders()
 	{
@@ -25,10 +26,10 @@ public class OrderService {
 		return null;
 	}
 	/**
-	 * 
+	 * 顾客使用
 	 * 查询个人的订单，返回list
 	 * @param user
-	 * @return
+	 * @return List<Orders>
 	 */
 	public List<Orders> getOrdersByUser(User user)
 	{
@@ -36,10 +37,10 @@ public class OrderService {
 		
 	}
 	/**
-	 * 
+	 * 顾客使用
 	 * 修改订单（评论）
 	 * @param orders
-	 * @return
+	 * @return boolean 
 	 */
 	public boolean updateOrders(Orders orders)
 	{
@@ -49,9 +50,10 @@ public class OrderService {
 	}
 	
 	/**
+	 * 顾客提交购物车时使用
 	 * 添加订单，返回Boolean
 	 * @param orders
-	 * @return
+	 * @return boolean
 	 */
 	public boolean insertOrders(Orders orders)
 	{

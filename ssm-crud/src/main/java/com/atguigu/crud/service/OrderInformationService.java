@@ -17,8 +17,9 @@ public class OrderInformationService {
 	
 	
 	/**
+	 * 餐厅使用
 	 * 查询所有订单信息
-	 * @returnList<OrderInformation>
+	 * @return List<OrderInformation>
 	 */
 	public List<OrderInformation> getAllOrderInformation()
 	{
@@ -26,7 +27,7 @@ public class OrderInformationService {
 		return null;
 	}
 	/**
-	 * 
+	 * 顾客使用
 	 * 查询个人的订单信息
 	 * @param user
 	 * @return List<OrderInformation>
@@ -37,7 +38,7 @@ public class OrderInformationService {
 		
 	}
 	/**
-	 * 
+	 * 顾客使用
 	 * 修改订单信息（数量）
 	 * @param orders
 	 * @return Boolean
@@ -50,6 +51,7 @@ public class OrderInformationService {
 	}
 	
 	/**
+	 * 顾客提交购物车时使用
 	 * 添加一条订单信息
 	 * @param orders
 	 * @return Boolean
