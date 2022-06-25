@@ -313,6 +313,146 @@ public class RestaurantExample {
             addCriterion("restaurant_notice not between", value1, value2, "restaurantNotice");
             return (Criteria) this;
         }
+
+        public Criteria andRestaurantAccountIsNull() {
+            addCriterion("restaurant_account is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantAccountIsNotNull() {
+            addCriterion("restaurant_account is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantAccountEqualTo(String value) {
+            addCriterion("restaurant_account =", value, "restaurantAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantAccountNotEqualTo(String value) {
+            addCriterion("restaurant_account <>", value, "restaurantAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantAccountGreaterThan(String value) {
+            addCriterion("restaurant_account >", value, "restaurantAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantAccountGreaterThanOrEqualTo(String value) {
+            addCriterion("restaurant_account >=", value, "restaurantAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantAccountLessThan(String value) {
+            addCriterion("restaurant_account <", value, "restaurantAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantAccountLessThanOrEqualTo(String value) {
+            addCriterion("restaurant_account <=", value, "restaurantAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantAccountLike(String value) {
+            addCriterion("restaurant_account like", value, "restaurantAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantAccountNotLike(String value) {
+            addCriterion("restaurant_account not like", value, "restaurantAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantAccountIn(List<String> values) {
+            addCriterion("restaurant_account in", values, "restaurantAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantAccountNotIn(List<String> values) {
+            addCriterion("restaurant_account not in", values, "restaurantAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantAccountBetween(String value1, String value2) {
+            addCriterion("restaurant_account between", value1, value2, "restaurantAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantAccountNotBetween(String value1, String value2) {
+            addCriterion("restaurant_account not between", value1, value2, "restaurantAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantPasswordIsNull() {
+            addCriterion("restaurant_password is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantPasswordIsNotNull() {
+            addCriterion("restaurant_password is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantPasswordEqualTo(String value) {
+            addCriterion("restaurant_password =", value, "restaurantPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantPasswordNotEqualTo(String value) {
+            addCriterion("restaurant_password <>", value, "restaurantPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantPasswordGreaterThan(String value) {
+            addCriterion("restaurant_password >", value, "restaurantPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantPasswordGreaterThanOrEqualTo(String value) {
+            addCriterion("restaurant_password >=", value, "restaurantPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantPasswordLessThan(String value) {
+            addCriterion("restaurant_password <", value, "restaurantPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantPasswordLessThanOrEqualTo(String value) {
+            addCriterion("restaurant_password <=", value, "restaurantPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantPasswordLike(String value) {
+            addCriterion("restaurant_password like", value, "restaurantPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantPasswordNotLike(String value) {
+            addCriterion("restaurant_password not like", value, "restaurantPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantPasswordIn(List<String> values) {
+            addCriterion("restaurant_password in", values, "restaurantPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantPasswordNotIn(List<String> values) {
+            addCriterion("restaurant_password not in", values, "restaurantPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantPasswordBetween(String value1, String value2) {
+            addCriterion("restaurant_password between", value1, value2, "restaurantPassword");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantPasswordNotBetween(String value1, String value2) {
+            addCriterion("restaurant_password not between", value1, value2, "restaurantPassword");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

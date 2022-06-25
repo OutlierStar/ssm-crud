@@ -7,6 +7,10 @@ public class Restaurant {
 
     private String restaurantNotice;
 
+    private String restaurantAccount;
+
+    private String restaurantPassword;
+
     public String getRestaurantName() {
         return restaurantName;
     }
@@ -29,5 +33,21 @@ public class Restaurant {
 
     public void setRestaurantNotice(String restaurantNotice) {
         this.restaurantNotice = restaurantNotice == null ? null : restaurantNotice.trim();
+    }
+
+    public String getRestaurantAccount() {
+        return restaurantAccount;
+    }
+
+    public void setRestaurantAccount(String restaurantAccount) {
+        this.restaurantAccount = restaurantAccount == null ? null : restaurantAccount.trim();
+    }
+
+    public String getRestaurantPassword() {
+        return restaurantPassword;
+    }
+
+    public void setRestaurantPassword(String restaurantPassword) {
+        this.restaurantPassword = restaurantPassword == null ? null : restaurantPassword.trim();
     }
 }
