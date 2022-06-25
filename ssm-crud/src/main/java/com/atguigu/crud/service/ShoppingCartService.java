@@ -35,7 +35,6 @@ public class ShoppingCartService {
 		
 		shoppingCartMapper.insertSelective(shoppingcart);
 	}
-	
 	/**
 	 * 顾客使用
 	 * 查询个人购物车

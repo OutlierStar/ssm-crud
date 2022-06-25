@@ -2,20 +2,23 @@ package com.atguigu.crud.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.atguigu.crud.bean.Msg;
 import com.atguigu.crud.bean.User;
 import com.atguigu.crud.service.OrderService;
 import com.atguigu.crud.service.UserService;
 
-@Controller
-
+@RestController
+@RequestMapping("/user")
 public class UserController {
 	
 	@Autowired
 	private UserService userService;
 	
-	public Msg login(User user) {
+	@RequestMapping("/login")
+	public Msg login(User user) {//登录
 		
 		User userRight = userService.check(user.getUserAccount(), user.getUserPassword());
 		
@@ -33,6 +36,18 @@ public class UserController {
 		
 	}
 	
-	
+	@RequestMapping("/register")
+	public Msg register(User user) {//注册
+		
+		//userService.
+		
+		return Msg.success();
+	}
 	
 }
+
+
+
+
+
+
