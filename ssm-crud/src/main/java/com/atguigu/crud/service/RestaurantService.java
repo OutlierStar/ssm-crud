@@ -37,6 +37,7 @@ public class RestaurantService {
 		
 		RestaurantExample re = new RestaurantExample();
 		RestaurantExample.Criteria criteria = re.createCriteria();
+		return null;
 		
 		
 		

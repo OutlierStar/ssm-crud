@@ -57,8 +57,11 @@ public class UserService {
 	      criteria.andUserPasswordEqualTo(password);	      
 	      
 	      List<User> t = userMapper.selectByExample(user);
+	      if(t != null&&t.size()!=0) {//判断列表不为空
+	    	  return t.get(0);
+	      }
 	      
-	      return t.get(0);
+	      return null;
 	      
 	}
 	/**

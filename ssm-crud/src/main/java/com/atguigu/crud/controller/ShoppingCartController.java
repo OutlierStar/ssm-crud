@@ -33,7 +33,7 @@ public class ShoppingCartController {
 		}else {//失败
 			
 			System.out.println("放回购物车信息失败！");
-			return Msg.success().add("ShopingCart", null);
+			return Msg.fail().add("ShopingCart", null);
 			
 		}
 		

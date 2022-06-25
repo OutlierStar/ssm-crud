@@ -24,7 +24,6 @@ public class UserController {
 		
 		if(userRight != null) {//不为空，则登陆成功
 			
-			
 			return Msg.success().add("user", userRight);
 			
 		}else {//登陆失败

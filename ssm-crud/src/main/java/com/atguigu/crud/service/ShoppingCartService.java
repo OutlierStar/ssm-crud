@@ -103,8 +103,7 @@ public class ShoppingCartService {
 			od.setOrderStatus(0);//未上菜
 			
 			ordersMapper.insertSelective(od);
-			
-			
+ 
 			Orders test = orderService.seletOrderId(user);
 			
 			OrderInformation oi= new OrderInformation();
