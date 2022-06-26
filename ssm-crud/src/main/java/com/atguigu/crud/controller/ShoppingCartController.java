@@ -25,7 +25,7 @@ public class ShoppingCartController {
 		
 		List<ShoppingCart> list = shoppingCartService.getAllShoppingCart(user);
 			
-		if (list != null) {//成功返回
+		if (list != null&&list.size()!=0) {//成功返回
 			
 			System.out.println("放回购物车信息成功！");
 			return Msg.success().add("ShopingCart", list);

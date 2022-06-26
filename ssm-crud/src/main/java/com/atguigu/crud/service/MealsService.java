@@ -47,7 +47,7 @@ public class MealsService {
 	/**
 	 * 餐厅使用
 	 * 插入菜品
-	 * @param meals
+	 * @param meals  
 	 * @return 
 	 */
 	public void insertMeals(Meals meals)
@@ -81,11 +81,11 @@ public class MealsService {
 	 * 根据销量排名菜品，返回list
 	 * @return List<Meals>
 	 */
-	public List<Meals> RankMeals( )
+	public List<Meals> RankMeals()
 	{
+		
 		MealsExample meal = new MealsExample();
 		meal.setOrderByClause("mealsSales desc");
-		
 		return mealsMapper.selectByExample(meal);
 	}
 	

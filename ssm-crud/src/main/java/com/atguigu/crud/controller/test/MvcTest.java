@@ -58,7 +58,6 @@ public class MvcTest {
 		for (int i : nums) {
 			System.out.print(" "+i);
 		}
-		
 		//获取员工数据
 		List<Employee> list = pi.getList();
 		for (Employee employee : list) {

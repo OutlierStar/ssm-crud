@@ -28,7 +28,7 @@ public class ordersController {
 		
 		List<Orders> list = orderService.getOrdersByUser(user);
 		
-		if(list != null ) {//获取成功
+		if(list != null&&list.size()!=0) {//获取成功
 			
 			return Msg.success().add("OrderList", list);
 			
@@ -37,10 +37,10 @@ public class ordersController {
 	}
 	
 	@RequestMapping("/cancel")
-	public Msg cancelOrder(Orders order){//取消订单
+	public Msg cancelOrder(String orderId){//取消订单
 		
-		orderService.updateOrders(order);
-		
+		Orders neworder = orderService.getOrdersByUserId(null);
+		orderService.updateOrders(neworder);
 		return Msg.success();
 		
 	}
