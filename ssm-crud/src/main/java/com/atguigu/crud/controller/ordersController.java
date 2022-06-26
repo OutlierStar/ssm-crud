@@ -22,14 +22,12 @@ public class ordersController {
 	
 	@Autowired
 	private OrderService orderService;
-	private UserService userService;
 	
-	@RequestMapping("/get")
-	public Msg getAllOrders(String userid) {//根据用户信息返回全部订单信息
+	@RequestMapping("/getByUserId")
+	public Msg getAllOrdersByUserId(int userId) {//根据用户信息返回全部订单信息
 		
-		User user = userService.getUserById(Integer.parseInt(userid));
-		
-		List<Orders> list = orderService.getOrdersByUser(user);
+	
+		List<Orders> list = orderService.getOrdersByUser(userId);
 		
 		if(list != null&&list.size()!=0) {//获取成功
 			
@@ -39,26 +37,42 @@ public class ordersController {
 		return Msg.fail().add("OrderList" , null); //获取失败
 	}
 	
-	@RequestMapping("/cancel")
-	public Msg cancelOrder(String orderId){//根据订单号取消订单
+	@RequestMapping("/getall")
+	public Msg getAllOrders() {//根据用户信息返回全部订单信息
 		
-		Orders neworder = orderService.getOrderById(Integer.parseInt(orderId));
-		orderService.updateOrders(neworder);
-		return Msg.success();
+	
+		List<Orders> list = orderService.getAllOrders();
+		
+		if(list != null&&list.size()!=0) {//获取成功
+			
+			return Msg.success().add("allList", list);
+			
+		}		
+		return Msg.fail().add("allList" , null); //获取失败
+	}
+	
+	@RequestMapping("/changeStatus")
+	public Msg changeOrderStatus(int orderId,int status){//修改状态
+		
+		Orders neworder = orderService.alterOrderStatus(orderId,status);
+		if(neworder!=null) {
+			
+			return Msg.success().add("newOrder", neworder);
+		}
+		return Msg.fail().add("newOrder", null);
 		
 	}
 	
+	@RequestMapping("/addComments")
+	public Msg addOrderComments(int orderId,String order_comment) {//增加评论
+		
+		Orders neworder = orderService.commentOrder(orderId,order_comment);
+		if(neworder!=null) {
+			
+			return Msg.success().add("newOrder", neworder);
+		}
+		return Msg.fail().add("newOrder", null);
+		
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -27,9 +27,9 @@ public class MealController {
 	private MealsService mealsService;
 	
 	@RequestMapping("/getBySort")
-	public Msg getMealsBySort(Sort sort) {//根据类型返回菜品
+	public Msg getMealsBySort(int sortId) {//根据类型返回菜品
 		
-		List<Meals> list = mealsService.getMealsBySort(sort);
+		List<Meals> list = mealsService.getMealsBySort(sortId);
 		
 		if(list != null && list.size()!=0) {//获取成功
 			
@@ -39,34 +39,64 @@ public class MealController {
 		return Msg.fail().add("mealList", null); //获取失败
 	}
 	
-	@RequestMapping("/getById")
+	@RequestMapping("/getAll")
 	
-	public Msg getMealsBySort(String id) {//根据id返回菜品
+	public Msg getAllMeals( ) {//返回全部菜品
 		
-		Meals meals = mealsService.getMealById(Integer.parseInt(id));
-		return Msg.success().add("meal", meals); //获取失败
+		List<Meals> list = mealsService.getAllMeals();
+		
+		if(list != null && list.size()!=0) {//获取成功
+			
+			return Msg.success().add("allMeals", list);
+			
+		}		
+		return Msg.fail().add("allMeals", null); //获取失败
+	}
+	@RequestMapping("/getRank")
+	
+	public Msg getAllMealsRank() {//返回菜品排名
+		
+		List<Meals> list = mealsService.RankMeals();
+		
+		if(list != null && list.size()!=0) {//获取成功
+			
+			return Msg.success().add("mealRank", list);
+			
+		}		
+		return Msg.fail().add("mealRank", null); //获取失败
 	}
 	
 	@RequestMapping("/add")
 	public Msg addMeal(Meals meal){//增加菜品
 		
-		mealsService.insertMeals(meal);
-		
-		return Msg.success();
+	   Boolean bool = mealsService.insertMeals(meal);
+		if(bool) {
+			
+			return Msg.success();
+		}
+		return Msg.fail();
 		
 	}
 	
 	@RequestMapping("/update")
 	public Msg updateMeal(Meals meal) {//修改菜品
-		mealsService.updateMeals(meal);
-		return Msg.success();
+		Boolean bool = mealsService.updateMeals(meal);
+		if(bool) {
+			
+			return Msg.success();
+		}
+		return Msg.fail();
 	}
 	
 	@RequestMapping("/delete")
-	public Msg deleteMeal(Meals meal) {//删除菜品
+	public Msg deleteMeal(int mealId) {//删除菜品
 		
-		mealsService.deleteMeals(meal);
-		return Msg.success();
+		Boolean bool = mealsService.deleteMeals(mealId);
+		if(bool) {
+			
+			return Msg.success();
+		}
+		return Msg.fail();
 		
 	}
 	

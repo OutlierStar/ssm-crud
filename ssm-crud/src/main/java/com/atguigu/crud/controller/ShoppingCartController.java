@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.atguigu.crud.bean.Msg;
 import com.atguigu.crud.bean.ShoppingCart;
+import com.atguigu.crud.bean.ShoppingCartKey;
 import com.atguigu.crud.bean.User;
 import com.atguigu.crud.service.ShoppingCartService;
 
@@ -21,9 +22,9 @@ public class ShoppingCartController {
 	public ShoppingCartService shoppingCartService;
 		
 	@RequestMapping("/get")
-	public Msg getShoppingCart(User user) {//获取购物车信息
+	public Msg getShoppingCart(int userId) {//获取购物车信息
 		
-		List<ShoppingCart> list = shoppingCartService.getAllShoppingCart(user);
+		List<ShoppingCart> list = shoppingCartService.getAllShoppingCart(userId);
 			
 		if (list != null&&list.size()!=0) {//成功返回
 			
@@ -47,9 +48,9 @@ public class ShoppingCartController {
 		
 	}
 	@RequestMapping("/delete")
-	public Msg deleteShoppingCart(ShoppingCart shopingCart) {//删除购物车信息
+	public Msg deleteShoppingCart(ShoppingCartKey shopingCartKey) {//删除购物车信息
 		
-		shoppingCartService.deleteShoppingCart(shopingCart);
+		shoppingCartService.deleteShoppingCart(shopingCartKey);
 		System.out.println("删除购物车信息成功！");
 		return Msg.success();
 		
@@ -63,9 +64,9 @@ public class ShoppingCartController {
 		
 	}
 	@RequestMapping("/submit")
-	public Msg submitShopingCart(User user){//提交用户的购物车
+	public Msg submitShopingCart(int userId){//提交用户的购物车
 		
-		shoppingCartService.SubmitShoppingCart(user);
+		shoppingCartService.SubmitShoppingCart(userId);
 		System.out.println("提交购物车成功！生成订单");
 		return Msg.success();
 	}
