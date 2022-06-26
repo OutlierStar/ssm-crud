@@ -31,7 +31,7 @@ public class UserService {
 	 * @param id
 	 * @return User
 	 */
-	public User getUserById( int id)
+	public User getUserById(int id)
 	{
 		return userMapper.selectByPrimaryKey(id);
 	}

@@ -22,9 +22,12 @@ public class ordersController {
 	
 	@Autowired
 	private OrderService orderService;
+	private UserService userService;
 	
 	@RequestMapping("/get")
-	public Msg getAllOrders(User user) {//根据用户信息返回全部订单信息
+	public Msg getAllOrders(String userid) {//根据用户信息返回全部订单信息
+		
+		User user = userService.getUserById(Integer.parseInt(userid));
 		
 		List<Orders> list = orderService.getOrdersByUser(user);
 		
@@ -37,14 +40,13 @@ public class ordersController {
 	}
 	
 	@RequestMapping("/cancel")
-	public Msg cancelOrder(String orderId){//取消订单
+	public Msg cancelOrder(String orderId){//根据订单号取消订单
 		
-		Orders neworder = orderService.getOrdersByUserId(null);
+		Orders neworder = orderService.getOrderById(Integer.parseInt(orderId));
 		orderService.updateOrders(neworder);
 		return Msg.success();
 		
 	}
-	
 	
 }
 

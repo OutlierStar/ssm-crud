@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -26,14 +26,12 @@ import com.atguigu.crud.service.UserService;
 @RestController
 @RequestMapping("/image")
 public class ImageController {
-	@Controller 
-	public class UploadController {
-		
+	
 		@RequestMapping("/set") 
-		public Msg upload(ImageFile file , String mealName) throws IllegalStateException, IOException{ 
+		public Msg upload(ImageFile file,int mealsId) throws IllegalStateException, IOException{ 
 			// 获取随机文件名 
 			//RandomStringUtils类导入jar包位置 https://mvnrepository.com/artifact/org.apache.struts.xwork/xwork-core/2.2.1
-			String name =  mealName;
+			String name = "meals"+mealsId;
 			// 获取原有文件名称（包括文件类型） 
 			String fileName = file.getImage().getOriginalFilename(); 
 			// 截取文件类型 
@@ -46,11 +44,9 @@ public class ImageController {
 			newFile.getParentFile().mkdirs(); 
 			// 复制文件，把图片写入磁盘 
 			file.getImage().transferTo(newFile); 
-			
 			return Msg.success().add("imagePath", newFileName); 
 		} 
-	}
-
+	
 }
 
 

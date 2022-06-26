@@ -26,8 +26,8 @@ public class MealController {
 	@Autowired
 	private MealsService mealsService;
 	
-	@RequestMapping("/get")
-	public Msg getMealByType(Sort sort) {//根据类型返回菜品
+	@RequestMapping("/getBySort")
+	public Msg getMealsBySort(Sort sort) {//根据类型返回菜品
 		
 		List<Meals> list = mealsService.getMealsBySort(sort);
 		
@@ -37,6 +37,14 @@ public class MealController {
 			
 		}		
 		return Msg.fail().add("mealList", null); //获取失败
+	}
+	
+	@RequestMapping("/getById")
+	
+	public Msg getMealsBySort(String id) {//根据id返回菜品
+		
+		Meals meals = mealsService.getMealById(Integer.parseInt(id));
+		return Msg.success().add("meal", meals); //获取失败
 	}
 	
 	@RequestMapping("/add")

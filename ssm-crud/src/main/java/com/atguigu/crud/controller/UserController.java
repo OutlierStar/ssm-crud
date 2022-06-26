@@ -38,15 +38,12 @@ public class UserController {
 	@RequestMapping("/register")
 	public Msg register(User user) {//注册
 		
-		//userService.
-		
+		userService.insertUser(user);
 		return Msg.success();
+		
 	}
-	
+		
 }
-
-
-
 
 
 
