@@ -61,6 +61,17 @@ public class SortService {
 		
 	}
 	
+	/**
+	 * 
+	 * 通过ID获取菜品
+	 * @param id
+	 * @return Sort
+	 */
+	public Sort getSortById(int id)
+	{
+		
+		return sortMapper.selectByPrimaryKey(id);
+	}
 	
 	
 }

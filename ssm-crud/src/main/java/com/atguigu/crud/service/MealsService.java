@@ -89,4 +89,16 @@ public class MealsService {
 		return mealsMapper.selectByExample(meal);
 	}
 	
+	/**
+	 * 通过ID查菜品
+	 * @param id
+	 * @return Meals
+	 */
+	public Meals getMealById(int id)
+	{
+		return mealsMapper.selectByPrimaryKey(id);
+		
+	}
+	
+	
 }

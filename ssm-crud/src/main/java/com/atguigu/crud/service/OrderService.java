@@ -70,7 +70,12 @@ public class OrderService {
 	}
 	
 	
-	
+	/**
+	 * 
+	 * 结算的时候，查询最大Order号
+	 * @param user
+	 * @return Orders
+	 */
 	public Orders seletOrderId(User user)
 	{
 		
@@ -81,6 +86,32 @@ public class OrderService {
 		
 		return ordersMapper.selectByExample(order).get(0);
 		
+	}
+	
+	/**
+	 * 
+	 * 修改订单（评论）
+	 * @param orders
+	 */
+	
+	
+	public void updateOrdersStatus(Orders orders)
+	{
+		
+		ordersMapper.updateByPrimaryKeySelective(orders);
+		
+	}
+	
+	/**
+	 * 
+	 * 通过ID查询订单
+	 * @param id
+	 * @return Orders
+	 */
+	
+	public Orders getOrderById(int id)
+	{
+		return ordersMapper.selectByPrimaryKey(id);
 	}
 	
 	
