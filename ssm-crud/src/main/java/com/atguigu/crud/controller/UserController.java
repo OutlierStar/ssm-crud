@@ -1,14 +1,19 @@
 package com.atguigu.crud.controller;
 
+import java.net.http.HttpResponse;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.w3c.dom.stylesheets.LinkStyle;
 
 import com.atguigu.crud.bean.Msg;
 import com.atguigu.crud.bean.User;
@@ -22,15 +27,31 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@RequestMapping("/loginByCookie")
+	public Msg loginByCookie(HttpServletRequest request) {//登录
+		
+		Cookie[] list = request.getCookies();
+		for(int i = 0;i<list.length;i++) {
+			if(list[i].getName().equals("userId")) {
+				
+				User user = userService.getUserById(Integer.parseInt(list[i].getValue()));
+				return Msg.success().add("user", user);
+	
+			}
+		}
+		return Msg.fail().add("user", null);
+		
+	}
+	
 	@RequestMapping("/login")
-	public Msg login(User user) {//登录
+	public Msg login(HttpServletResponse response,User user) {//登录
 		
 		User userRight = userService.login(user.getUserAccount(), user.getUserPassword());
 		
 		if(userRight != null) {//不为空，则登陆成功
 			
-			
-			return Msg.success().add("user", userRight).add("cookie", new Cookie("login",userRight));
+			response.addCookie(new Cookie("userId", ""+userRight.getUserId()));
+			return Msg.success().add("user", userRight);
 			
 		}else {//登陆失败
 			
