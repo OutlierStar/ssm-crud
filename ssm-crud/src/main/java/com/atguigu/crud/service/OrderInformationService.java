@@ -19,58 +19,62 @@ public class OrderInformationService {
 	private OrderInformationMapper orderInformationMapper;
 	
 	
-	/**
-	 * 餐厅使用
-	 * 查询所有订单信息
-	 * @return List<OrderInformation>
-	 */
-	public List<OrderInformation> getAllOrderInformation()
-	{
-		
-		return orderInformationMapper.selectByExample(null);
-		
-	}
+	
 	/**
 	 * 
-	 * 查询订单信息
+	 * 查询个人订单信息
 	 * @param order
-	 * @return
+	 * @return List<OrderInformation>
 	 */
-	public List<OrderInformation> getOrderInformationByUser(Orders order)
+	public List<OrderInformation> getOrderInformationByUser(int orderId)
 	{
 		
 		
 		OrderInformationExample or = new OrderInformationExample();
 		OrderInformationExample.Criteria criteria = or.createCriteria();
-		criteria.andOrderIdEqualTo(order.getOrderId());
+		criteria.andOrderIdEqualTo(orderId);
 		
 		return orderInformationMapper.selectByExample(or);
 		
 	}
-	/**
-	 * 顾客使用
-	 * 修改订单信息（数量）
-	 * @param orders
-	 * @return 
-	 */
-	public void updateOrderInformation(OrderInformation orderInformation)
-	{
-		
-		orderInformationMapper.updateByPrimaryKeySelective(orderInformation);
-		
-		
-	}
 	
-	/**
-	 * 顾客提交购物车时使用
-	 * 添加一条订单信息
-	 * @param orders
-	 * @return 
-	 */
-	public void insertOrderInformation(OrderInformation orderInformation)
-	{
-		orderInformationMapper.insertSelective(orderInformation);
-		
-	}
+	
+//	/**
+//	 * 餐厅使用
+//	 * 查询所有订单信息
+//	 * @return List<OrderInformation>
+//	 */
+//	public List<OrderInformation> getAllOrderInformation()
+//	{
+//		
+//		return orderInformationMapper.selectByExample(null);
+//		
+//	}
+//	
+//	/**
+//	 * 顾客使用
+//	 * 修改订单信息（数量）
+//	 * @param orders
+//	 * @return 
+//	 */
+//	public void updateOrderInformation(OrderInformation orderInformation)
+//	{
+//		
+//		orderInformationMapper.updateByPrimaryKeySelective(orderInformation);
+//		
+//		
+//	}
+//	
+//	/**
+//	 * 顾客提交购物车时使用
+//	 * 添加一条订单信息
+//	 * @param orders
+//	 * @return 
+//	 */
+//	public void insertOrderInformation(OrderInformation orderInformation)
+//	{
+//		orderInformationMapper.insertSelective(orderInformation);
+//		
+//	}
 	
 }

@@ -11,6 +11,7 @@ import com.atguigu.crud.bean.OrderInformation;
 import com.atguigu.crud.bean.Orders;
 import com.atguigu.crud.bean.ShoppingCart;
 import com.atguigu.crud.bean.ShoppingCartExample;
+import com.atguigu.crud.bean.ShoppingCartKey;
 import com.atguigu.crud.bean.User;
 import com.atguigu.crud.bean.UserExample;
 import com.atguigu.crud.dao.OrderInformationMapper;
@@ -30,10 +31,14 @@ public class ShoppingCartService {
 	 * @param shoppingcart
 	 * @return 
 	 */
-	public void insertShoppingCart(ShoppingCart shoppingcart)
+	public boolean insertShoppingCart(ShoppingCart shoppingcart)
 	{
 		
-		shoppingCartMapper.insertSelective(shoppingcart);
+		int flag=shoppingCartMapper.insertSelective(shoppingcart);
+		
+		if(flag==1)
+			return true;
+		return false;
 	}
 	/**
 	 * 顾客使用
@@ -41,19 +46,17 @@ public class ShoppingCartService {
 	 * @param user
 	 * @return List<ShoppingCart>
 	 */
-	public List<ShoppingCart> getAllShoppingCart(User user)
+	public List<ShoppingCart> getAllShoppingCart(int userId)
 	{
 		
 		ShoppingCartExample shop = new ShoppingCartExample();
 		  
 		ShoppingCartExample.Criteria criteria = shop.createCriteria(); //构造自定义查询条件
-	     criteria.andUserIdEqualTo(user.getUserId());
+	    criteria.andUserIdEqualTo(userId);
 	         
-	 
-	      List<ShoppingCart> t = shoppingCartMapper.selectByExample(shop);
+	    List<ShoppingCart> t = shoppingCartMapper.selectByExample(shop);
 	      
-	      return t;
-		
+	    return t;
 		
 	}
 	
@@ -61,13 +64,18 @@ public class ShoppingCartService {
 	 * 顾客使用
 	 * 删除购物车
 	 * @param shoppingcart
-	 * @return 
+	 * @return boolean
 	 */
-	public void deleteShoppingCart(ShoppingCart shoppingcart)
+	public boolean deleteShoppingCart(ShoppingCartKey key)
 	{
+		ShoppingCart s = new ShoppingCart();
+		s.setUserId(key.getUserId());
+		s.setMealsId(key.getMealsId());
 		
-		shoppingCartMapper.deleteByPrimaryKey(shoppingcart);
-		
+		int flag=shoppingCartMapper.deleteByPrimaryKey(s);
+		if(flag==1)
+			return true;
+		return false;
 		
 	}
 	
@@ -75,50 +83,51 @@ public class ShoppingCartService {
 	 * 顾客使用
 	 * 修改购物车中菜品的信息
 	 * @param shoppingcart
-	 * @return 
+	 * @return boolean 
 	 */
-	public void updateShoppingCart(ShoppingCart shoppingcart)
+	public boolean updateShoppingCart(ShoppingCart shoppingcart)
 	{
 		
-		shoppingCartMapper.updateByPrimaryKeySelective(shoppingcart);
-		
+		int flag=shoppingCartMapper.updateByPrimaryKeySelective(shoppingcart);
+		if(flag==1)
+			return true;
+		return false;
 	}
+	
+	
 	/**
 	 * 顾客使用
-	 * 提交购物车
+	 * 提交购物车，插入订单表->获取订单号->插入订单信息表
 	 * @return 
 	 */
-	public void SubmitShoppingCart(User user)
+	public Orders SubmitShoppingCart(int userId)
 	{
 		
 		
-		List<ShoppingCart> list=getAllShoppingCart(user);
-				
+		List<ShoppingCart> list=getAllShoppingCart(userId);
+		Orders order=new Orders();
+		
+		order.setOrderId(userId);
+		
+		ordersMapper.insert(order);
+		
+		int orderId=orderService.selectOrderId(userId).getOrderId();
+		
+		
 		for(ShoppingCart t:list) {
 			
-			Orders od = new Orders();
-			od.setUserId(t.getUserId());
-			od.setOrderTime(new Date());
-			od.setOrderStatus(0);//未上菜
-			
-			ordersMapper.insertSelective(od);
-			
-			
-			Orders test = orderService.seletOrderId(user);
 			
 			OrderInformation oi= new OrderInformation();
 			oi.setMealsId(t.getMealsId());
 			oi.setMealsNum(t.getMealsNum());
-			oi.setOrderId(test.getOrderId());
+			oi.setOrderId(orderId);
 			
+			orderInformationMapper.insert(oi);
 			
 		}
 		
-		
-		
-		
-		
-		
+		return orderService.selectOrderId(userId);
+			
 	}
 	
 }

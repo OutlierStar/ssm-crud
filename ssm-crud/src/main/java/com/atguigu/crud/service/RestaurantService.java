@@ -18,12 +18,12 @@ public class RestaurantService {
 	private RestaurantMapper restaurantMapper;
 	
 	/**
-	 * 验证账号
+	 * 登录
 	 * @param account
 	 * @param password
 	 * @return Restaurant
 	 */
-	public Restaurant check(String account,String password)
+	public Restaurant login(String account,String password)
 	{
 		
 		RestaurantExample re = new RestaurantExample();
@@ -36,6 +36,24 @@ public class RestaurantService {
 		
 	}
 	
+	/**
+	 * 
+	 * 获取餐厅信息
+	 * @return Restaurant
+	 */
+	public Restaurant getRestaurant()
+	{
+		return restaurantMapper.selectByExample(null).get(0);
+	}
+	
+	
+	public boolean updateRestaurant(Restaurant r)
+	{
+		int flag=restaurantMapper.updateByExampleSelective(r, null);
+		if(flag==1)
+			return true;
+		return false;
+	}
 	
 	
 }

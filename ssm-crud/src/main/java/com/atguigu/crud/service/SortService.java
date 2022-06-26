@@ -30,48 +30,44 @@ public class SortService {
 	 * @param sort
 	 * @return
 	 */
-	public void insertSort(Sort sort)
+	public boolean insertSort(Sort sort)
 	{
 	
-		sortMapper.insertSelective(sort);
-		
+		 int flag=sortMapper.insertSelective(sort);
+		if(flag==1)
+			return true;
+		return false;
 	}
 	
 	/**
 	 * 餐厅使用
 	 * 删除分类
 	 * @param sort
-	 * @return 
+	 * @return boolean
 	 */
-	public void deleteSort(Sort sort)
+	public boolean deleteSort(Sort sort)
 	{
 		
-		sortMapper.deleteByPrimaryKey(sort.getSortId());
+		int flag=sortMapper.deleteByPrimaryKey(sort.getSortId());
+		if(flag==1)
+			return true;
+		return false;
 	}
 	
 	/**
 	 * 餐厅使用
 	 * 修改分类
 	 * @param sort
-	 * @return 
+	 * @return boolean
 	 */
-	public void updateSort(Sort sort)
+	public boolean updateSort(Sort sort)
 	{
-		sortMapper.updateByPrimaryKey(sort);
-		
+		int flag=sortMapper.updateByPrimaryKey(sort);
+		if(flag==1)
+			return true;
+		return false;
 	}
 	
-	/**
-	 * 
-	 * 通过ID获取菜品
-	 * @param id
-	 * @return Sort
-	 */
-	public Sort getSortById(int id)
-	{
-		
-		return sortMapper.selectByPrimaryKey(id);
-	}
-	
+
 	
 }

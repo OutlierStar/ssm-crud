@@ -24,12 +24,12 @@ public class MealsService {
 	 * @param sort
 	 * @return List<Meals>
 	 */
-	public List<Meals> getMealsBySort(Sort sort)
+	public List<Meals> getMealsBySort(int sortId)
 	{
 		
 		MealsExample meal = new MealsExample();
 		MealsExample.Criteria criteria = meal.createCriteria();
-		criteria.andSortIdEqualTo(sort.getSortId());
+		criteria.andSortIdEqualTo(sortId);
 		return mealsMapper.selectByExample(meal);
 		
 	}
@@ -44,38 +44,7 @@ public class MealsService {
 		
 		return mealsMapper.selectByExample(null);
 	}
-	/**
-	 * 餐厅使用
-	 * 插入菜品
-	 * @param meals
-	 * @return 
-	 */
-	public void insertMeals(Meals meals)
-	{
-		
-		mealsMapper.insertSelective(meals);
-	}
 	
-	/**
-	 * 餐厅使用
-	 * 删除菜品
-	 * @param meals
-	 * @return 
-	 */
-	public void deleteMeals(Meals meals)
-	{
-		mealsMapper.deleteByPrimaryKey(meals.getMealsId());
-	}
-	/**
-	 * 餐厅使用
-	 * 修改菜品
-	 * @param meals
-	 * @return void
-	 */
-	public void updateMeals(Meals meals)
-	{
-		mealsMapper.updateByPrimaryKey(meals);
-	}
 	/**
 	 * 顾客使用，销量排行
 	 * 根据销量排名菜品，返回list
@@ -90,15 +59,48 @@ public class MealsService {
 	}
 	
 	/**
-	 * 通过ID查菜品
-	 * @param id
-	 * @return Meals
+	 * 餐厅使用
+	 * 插入菜品
+	 * @param meals
+	 * @return boolean
 	 */
-	public Meals getMealById(int id)
+	public boolean insertMeals(Meals meals)
 	{
-		return mealsMapper.selectByPrimaryKey(id);
+		
+		int flag=mealsMapper.insertSelective(meals);
+		if(flag==1)
+			return true;
+		return false;
+	}
+	
+	/**
+	 * 餐厅使用
+	 * 删除菜品
+	 * @param mealId
+	 * @return boolean
+	 */
+	public boolean deleteMeals(int mealId)
+	{
+		int flag=mealsMapper.deleteByPrimaryKey(mealId);
+		if(flag==1)
+			return true;
+		return false;
 		
 	}
+	/**
+	 * 餐厅使用
+	 * 修改菜品
+	 * @param meals
+	 * @return void
+	 */
+	public boolean updateMeals(Meals meals)
+	{
+		int flag=mealsMapper.updateByPrimaryKey(meals);
+		if(flag==1)
+			return true;
+		return false;
+	}
+	
 	
 	
 }
