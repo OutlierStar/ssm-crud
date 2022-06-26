@@ -27,26 +27,25 @@ public class UserService {
 	/**
 	 * 顾客使用
 	 * 查询个人信息
-	 * 根据用户ID获取用户信息，返回User类
 	 * @param id
 	 * @return User
 	 */
-	public User getUserById(int id)
+	public User getUserById(int userId)
 	{
-		return userMapper.selectByPrimaryKey(id);
+		return userMapper.selectByPrimaryKey(userId);
 	}
 	
 	
 	/**
 	 * 
-	 * 登录验证
+	 * 登录
 	 * 验证账号密码
 	 * @param account
 	 * @param password
 	 * @return User
 	 */
 	
-	public User check(String account,String password)
+	public User login(String account,String password)
 	{
 		
 		
@@ -64,28 +63,37 @@ public class UserService {
 	      return null;
 	      
 	}
+	
 	/**
 	 * 顾客使用
 	 * 修改个人信息
 	 * @param users
 	 * @return 
 	 */
-	public void updateUser(User user)
+	public boolean updateUser(User user)
 	{
 		
-		 userMapper.updateByPrimaryKey(user);
-		
+		 int flag=userMapper.updateByPrimaryKey(user);
+		 if(flag==1)
+			 return true;
+		 return false;
 	}
 	
 	
 	/**
 	 * 注册用户
-	 * @param users
+	 * @param user
+	 * @return User
 	 */
-	public void insertUser(User user)
+	public User insertUser(User user)
 	{
 		
 		userMapper.insertSelective(user);
+		
+		int count=(int)userMapper.countByExample(null);
+		
+		return getUserById(count);
+		
 	}
 	
 	

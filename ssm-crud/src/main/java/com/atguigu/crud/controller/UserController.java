@@ -2,6 +2,9 @@ package com.atguigu.crud.controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+
+import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +29,8 @@ public class UserController {
 		
 		if(userRight != null) {//不为空，则登陆成功
 			
-			return Msg.success().add("user", userRight);
+			
+			return Msg.success().add("user", userRight).add("cookie", new Cookie("login",userRight));
 			
 		}else {//登陆失败
 			

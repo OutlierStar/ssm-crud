@@ -40,6 +40,39 @@ public class RestaurantController {
 		}
 		
 	}
+	@RequestMapping("/update")
+	public Msg update(Restaurant restaurant) {//修改餐厅信息
+		
+		Boolean bool = restaurantService.updateRestaurant(restaurant);
+		
+		if(bool) {//不为空，则成功
+			
+			return Msg.success();
+			
+		}else {//失败
+			
+			
+			return Msg.fail();
+			
+		}
+		
+	}
+	@RequestMapping("/get")
+	public Msg get() {//获取餐厅信息
+		
+		Restaurant restaurant = restaurantService.getRestaurant();
+		
+		if(restaurant!=null) {//不为空，则成功
+			
+			return Msg.success().add("restaurant", restaurant);
+			
+		}else {//失败
+			
+			
+			return Msg.fail().add("restaurant", null);
+			
+		}
+	}
 	
 }
 

@@ -29,17 +29,17 @@ public class OrderService {
 	}
 	/**
 	 * 顾客使用
-	 * 查询个人的订单，返回list
+	 * 查询个人的订单
 	 * @param user
 	 * @return List<Orders>
 	 */
-	public List<Orders> getOrdersByUser(User user)
+	public List<Orders> getOrdersByUser(int userId)
 	{
 		
 		
 		OrdersExample order = new OrdersExample();
 		OrdersExample.Criteria criteria = order.createCriteria();
-		criteria.andUserIdEqualTo(user.getUserId());
+		criteria.andUserIdEqualTo(userId);
 		
 		return ordersMapper.selectByExample(order);
 		
@@ -50,24 +50,31 @@ public class OrderService {
 	 * @param orders
 	 * @return 
 	 */
-	public void updateOrders(Orders orders)
+	public Orders commentOrder(int orderId,String comment)
 	{
 		
-		ordersMapper.updateByPrimaryKeySelective(orders);
+		Orders o = ordersMapper.selectByPrimaryKey(orderId);
+		o.setOrderComment(comment);
+		
+		ordersMapper.updateByPrimaryKeySelective(o);
+		
+		return ordersMapper.selectByPrimaryKey(orderId);
+	}
+	
+	
+	public Orders alterOrderStatus(int orderId,int status)
+	{
+		
+		Orders o = ordersMapper.selectByPrimaryKey(orderId);
+		o.setOrderStatus(status);
+		
+		ordersMapper.updateByPrimaryKeySelective(o);
+		
+		return ordersMapper.selectByPrimaryKey(orderId);
 		
 	}
 	
-	/**
-	 * 顾客提交购物车时使用
-	 * 添加订单
-	 * @param orders
-	 * @return 
-	 */
-	public void insertOrders(Orders orders)
-	{
-		ordersMapper.insertSelective(orders);
-		
-	}
+	
 	
 	
 	/**
@@ -76,43 +83,20 @@ public class OrderService {
 	 * @param user
 	 * @return Orders
 	 */
-	public Orders seletOrderId(User user)
+	public Orders selectOrderId(int userId)
 	{
 		
 		OrdersExample order = new OrdersExample();
 		order.setOrderByClause("orderId desc");
 		OrdersExample.Criteria criteria = order.createCriteria();
-		criteria.andUserIdEqualTo(user.getUserId());
+		criteria.andUserIdEqualTo(userId);
 		
 		return ordersMapper.selectByExample(order).get(0);
 		
 	}
 	
-	/**
-	 * 
-	 * 修改订单（评论）
-	 * @param orders
-	 */
+
 	
-	
-	public void updateOrdersStatus(Orders orders)
-	{
-		
-		ordersMapper.updateByPrimaryKeySelective(orders);
-		
-	}
-	
-	/**
-	 * 
-	 * 通过ID查询订单
-	 * @param id
-	 * @return Orders
-	 */
-	
-	public Orders getOrderById(int id)
-	{
-		return ordersMapper.selectByPrimaryKey(id);
-	}
 	
 	
 }
