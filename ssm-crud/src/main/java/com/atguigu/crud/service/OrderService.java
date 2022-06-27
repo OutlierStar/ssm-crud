@@ -87,7 +87,7 @@ public class OrderService {
 	{
 		
 		OrdersExample order = new OrdersExample();
-		order.setOrderByClause("orderId desc");
+		order.setOrderByClause("order_Id desc");
 		OrdersExample.Criteria criteria = order.createCriteria();
 		criteria.andUserIdEqualTo(userId);
 		
@@ -96,6 +96,24 @@ public class OrderService {
 	}
 	
 
+	/**
+	 * 
+	 * 插入order
+	 * @param user
+	 * @return Orders
+	 */
+	public boolean insertOrder(Orders orders)
+	{
+		
+		int bool = ordersMapper.insertSelective(orders);
+		if(bool==1) {
+			return true;
+			
+		}
+		return false;
+		
+	}
+	
 	
 	
 	

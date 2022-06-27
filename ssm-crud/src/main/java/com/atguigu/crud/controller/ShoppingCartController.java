@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,7 +43,7 @@ public class ShoppingCartController {
 		
 	}
 	@RequestMapping("/add")
-	public Msg addShoppingCart(ShoppingCart shopingCart) {//增加购物车信息
+	public Msg addShoppingCart(@RequestBody ShoppingCart shopingCart) {//增加购物车信息
 		
 		Boolean bool= shoppingCartService.insertShoppingCart(shopingCart);
 		if(bool) {
@@ -52,7 +53,7 @@ public class ShoppingCartController {
 		
 	}
 	@RequestMapping("/delete")
-	public Msg deleteShoppingCart(ShoppingCartKey shopingCartKey) {//删除购物车信息
+	public Msg deleteShoppingCart(@RequestBody ShoppingCartKey shopingCartKey) {//删除购物车信息
 		
 		Boolean bool= shoppingCartService.deleteShoppingCart(shopingCartKey);
 		if(bool) {
@@ -62,7 +63,7 @@ public class ShoppingCartController {
 		
 	}
 	@RequestMapping("/update")
-	public Msg updatShoppingCart(ShoppingCart shopingCart) {//修改购物车信息
+	public Msg updatShoppingCart(@RequestBody ShoppingCart shopingCart) {//修改购物车信息
 		
 		Boolean bool= shoppingCartService.updateShoppingCart(shopingCart);
 		if(bool) {

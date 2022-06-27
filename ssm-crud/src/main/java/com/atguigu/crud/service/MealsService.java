@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.atguigu.crud.bean.Meals;
 import com.atguigu.crud.bean.MealsExample;
@@ -54,7 +55,7 @@ public class MealsService {
 	{
 		
 		MealsExample meal = new MealsExample();
-		meal.setOrderByClause("mealsSales desc");
+		meal.setOrderByClause("meals_Sales desc");
 		return mealsMapper.selectByExample(meal);
 	}
 	
@@ -66,7 +67,6 @@ public class MealsService {
 	 */
 	public boolean insertMeals(Meals meals)
 	{
-		
 		int flag=mealsMapper.insertSelective(meals);
 		if(flag==1)
 			return true;

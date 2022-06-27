@@ -101,7 +101,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/changeUser")
-	public Msg changeUser( User user) {//获取全部用户的信息
+	public Msg changeUser( User user) {//修改用户的信息
 		
 		boolean bool = userService.updateUser(user);
 		

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,13 +16,13 @@ import com.atguigu.crud.service.SortService;
 import com.atguigu.crud.service.UserService;
 
 @RestController
-@RequestMapping("/sorts")
+@RequestMapping("/sort")
 public class SortController {
 	
 	@Autowired
 	private SortService sortService;
 	
-	@RequestMapping("/selectAll")
+	@RequestMapping("/select")
 	public Msg selectAll() {//获取全部分类信息
 		
 		List<Sort> list = sortService.getAllSort();
@@ -32,15 +33,14 @@ public class SortController {
 			
 		}else {//失败
 			
-			
 			return Msg.fail().add("sorts", null);
 			
 		}
 		
 	}
 	
-	@RequestMapping("/addSort")
-	public Msg addSort(Sort sort) {//增加分类
+	@RequestMapping("/add")
+	public Msg addSort(@RequestBody Sort sort) {//增加分类
 		
 		Boolean bool  = sortService.insertSort(sort);
 		if(bool) {
@@ -51,7 +51,7 @@ public class SortController {
 		return Msg.fail();
 	}
 	
-	@RequestMapping("/deleteSort")
+	@RequestMapping("/delete")
 	public Msg deleteSort(int sortId) {//删除分类
 		
 		Boolean bool = sortService.deleteSort(sortId);
@@ -64,8 +64,8 @@ public class SortController {
 		
 	}
 	
-	@RequestMapping("/updateSort")
-	public Msg updateSort(Sort sort ) {//更新分类
+	@RequestMapping("/update")
+	public Msg updateSort(@RequestBody Sort sort) {//更新分类
 		
 		Boolean bool = sortService.updateSort(sort);
 		if(bool) {

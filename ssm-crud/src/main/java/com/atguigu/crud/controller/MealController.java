@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -67,9 +68,8 @@ public class MealController {
 	}
 	
 	@RequestMapping("/add")
-	public Msg addMeal(Meals meal){//增加菜品
-		
-	   Boolean bool = mealsService.insertMeals(meal);
+	public Msg addMeal(@RequestBody Meals meal){//增加菜品
+		Boolean bool = mealsService.insertMeals(meal);
 		if(bool) {
 			
 			return Msg.success();
@@ -79,7 +79,7 @@ public class MealController {
 	}
 	
 	@RequestMapping("/update")
-	public Msg updateMeal(Meals meal) {//修改菜品
+	public Msg updateMeal(@RequestBody Meals meal) {//修改菜品
 		Boolean bool = mealsService.updateMeals(meal);
 		if(bool) {
 			
@@ -89,9 +89,9 @@ public class MealController {
 	}
 	
 	@RequestMapping("/delete")
-	public Msg deleteMeal(int mealId) {//删除菜品
+	public Msg deleteMeal(int mealsId) {//删除菜品
 		
-		Boolean bool = mealsService.deleteMeals(mealId);
+		Boolean bool = mealsService.deleteMeals(mealsId);
 		if(bool) {
 			
 			return Msg.success();

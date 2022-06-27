@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,7 +42,7 @@ public class RestaurantController {
 		
 	}
 	@RequestMapping("/update")
-	public Msg update(Restaurant restaurant) {//修改餐厅信息
+	public Msg update(@RequestBody Restaurant restaurant) {//修改餐厅信息
 		
 		Boolean bool = restaurantService.updateRestaurant(restaurant);
 		

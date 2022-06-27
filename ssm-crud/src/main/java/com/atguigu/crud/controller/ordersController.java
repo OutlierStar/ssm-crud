@@ -38,7 +38,7 @@ public class ordersController {
 		return Msg.fail().add("orders" , null); //获取失败
 	}
 	
-	@RequestMapping("/getall")
+	@RequestMapping("/getAll")
 	public Msg getAllOrders() {//根据用户信息返回全部订单信息
 		
 	

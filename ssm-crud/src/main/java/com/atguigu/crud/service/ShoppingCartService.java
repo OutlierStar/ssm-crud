@@ -22,8 +22,9 @@ import com.atguigu.crud.dao.ShoppingCartMapper;
 public class ShoppingCartService {
 	@Autowired
 	private ShoppingCartMapper shoppingCartMapper;
-	private OrdersMapper ordersMapper;
+	@Autowired
 	private OrderService orderService;
+	@Autowired
 	private OrderInformationMapper orderInformationMapper;
 	/**
 	 * 顾客使用
@@ -107,14 +108,15 @@ public class ShoppingCartService {
 		List<ShoppingCart> list=getAllShoppingCart(userId);
 		Orders order=new Orders();
 		
-		order.setOrderId(userId);
+		order.setUserId(userId);
 		
-		ordersMapper.insert(order);
+		orderService.insertOrder(order);
 		
 		int orderId=orderService.selectOrderId(userId).getOrderId();
 		
 		
 		for(ShoppingCart t:list) {
+			
 			
 			OrderInformation oi= new OrderInformation();
 			oi.setMealsId(t.getMealsId());
@@ -122,6 +124,9 @@ public class ShoppingCartService {
 			oi.setOrderId(orderId);
 			
 			orderInformationMapper.insert(oi);
+			ShoppingCartKey key = new ShoppingCartKey();
+			key.setUserId(t.getUserId());
+			key.setMealsId(t.getMealsId());
 			
 		}
 		

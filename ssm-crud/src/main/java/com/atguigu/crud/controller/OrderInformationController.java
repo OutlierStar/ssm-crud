@@ -27,7 +27,7 @@ public class OrderInformationController {
 	private OrderInformationService orderInformationService;
 	
 	@RequestMapping("/get")
-	public Msg getOrderInformationByUser(int orderId) {//餐厅登录
+	public Msg getOrderInformationByUser(int orderId) {//返回订单信息
 		
 		List<OrderInformation> list = orderInformationService.getOrderInformationByUser(orderId);
 		
@@ -43,22 +43,7 @@ public class OrderInformationController {
 		}
 		
 	}
-//	@RequestMapping("/update")
-//	public Msg update(Restaurant restaurant) {//餐厅登录
-//		
-//		Boolean bool
-//		if(restaurant != null) {//不为空，则成功
-//			
-//			return Msg.success().add("restaurant", restaurant);
-//			
-//		}else {//失败
-//			
-//			
-//			return Msg.fail().add("restaurant", null);
-//			
-//		}
-//		
-//	}
+
 }
 
 
