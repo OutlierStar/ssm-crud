@@ -26,6 +26,9 @@ public class ShoppingCartService {
 	private OrderService orderService;
 	@Autowired
 	private OrderInformationMapper orderInformationMapper;
+	@Autowired
+	private MealsService mealsService;
+	
 	/**
 	 * 顾客使用
 	 * 添加菜品，加入购物车
@@ -98,12 +101,13 @@ public class ShoppingCartService {
 	
 	/**
 	 * 顾客使用
-	 * 提交购物车，插入订单表->获取订单号->插入订单信息表
+	 * 提交购物车。获取订单总价->插入订单表->获取订单号->插入订单信息表->删除购物车
 	 * @return 
 	 */
 	public Orders SubmitShoppingCart(int userId)
 	{
 		
+		float sumPrice=0;
 		
 		List<ShoppingCart> list=getAllShoppingCart(userId);
 		Orders order=new Orders();
@@ -117,6 +121,8 @@ public class ShoppingCartService {
 		
 		for(ShoppingCart t:list) {
 			
+			sumPrice += mealsService.getMealsById(t.getMealsId()).getMealsPrice();
+			
 			
 			OrderInformation oi= new OrderInformation();
 			oi.setMealsId(t.getMealsId());
@@ -129,6 +135,9 @@ public class ShoppingCartService {
 			key.setMealsId(t.getMealsId());
 			
 		}
+		
+		order.setOrderPrice(sumPrice);
+		orderService.updateOrder(order);
 		
 		return orderService.selectOrderId(userId);
 			

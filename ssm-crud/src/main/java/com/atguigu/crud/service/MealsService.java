@@ -102,5 +102,17 @@ public class MealsService {
 	}
 	
 	
+	/**
+	 * 通过ID查询菜品
+	 * @param mealsId
+	 * @return Meals
+	 */
+	public Meals getMealsById(int mealsId)
+	{
+		
+		return mealsMapper.selectByPrimaryKey(mealsId);
+		
+	}
+	
 	
 }
