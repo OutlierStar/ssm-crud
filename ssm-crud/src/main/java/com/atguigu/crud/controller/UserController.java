@@ -38,7 +38,7 @@ public class UserController {
 				return Msg.success().add("user", user);
 	
 			}
-		}
+		} 
 		return Msg.fail().add("user", null);
 		
 	}
@@ -68,10 +68,10 @@ public class UserController {
 		User newUser = userService.insertUser(user);
 		if(user!=null) {
 			
-			return Msg.success().add("newUser", newUser);
+			return Msg.success().add("user", newUser);
 			
 		}
-		return Msg.fail().add("newUser", null);
+		return Msg.fail().add("user", null);
 	}
 	
 	@RequestMapping("/search")
@@ -80,10 +80,10 @@ public class UserController {
 		User user = userService.getUserById(userId);
 		if(user!=null) {
 			
-			return Msg.success().add("userInform", user);
+			return Msg.success().add("user", user);
 			
 		}
-		return Msg.fail().add("userInform", null);
+		return Msg.fail().add("user", null);
 		
 	}
 	
@@ -93,10 +93,10 @@ public class UserController {
 		List<User> list = userService.getAllUser();
 		if(list!=null&&list.size()!=0) {
 			
-			return Msg.success().add("allUsers", list);
+			return Msg.success().add("users", list);
 			
 		}
-		return Msg.fail().add("allUsers", null);
+		return Msg.fail().add("users", null);
 		
 	}
 	

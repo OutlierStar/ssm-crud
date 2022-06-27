@@ -28,12 +28,12 @@ public class SortController {
 		
 		if(list != null && list.size() != 0) {//不为空，则成功
 			
-			return Msg.success().add("sortList", list);
+			return Msg.success().add("sorts", list);
 			
 		}else {//失败
 			
 			
-			return Msg.fail().add("sortList", null);
+			return Msg.fail().add("sorts", null);
 			
 		}
 		

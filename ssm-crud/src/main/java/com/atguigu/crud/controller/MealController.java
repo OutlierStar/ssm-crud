@@ -33,10 +33,10 @@ public class MealController {
 		
 		if(list != null && list.size()!=0) {//获取成功
 			
-			return Msg.success().add("mealList", list);
+			return Msg.success().add("meals", list);
 			
 		}		
-		return Msg.fail().add("mealList", null); //获取失败
+		return Msg.fail().add("meals", null); //获取失败
 	}
 	
 	@RequestMapping("/getAll")
@@ -47,10 +47,10 @@ public class MealController {
 		
 		if(list != null && list.size()!=0) {//获取成功
 			
-			return Msg.success().add("allMeals", list);
+			return Msg.success().add("meals", list);
 			
 		}		
-		return Msg.fail().add("allMeals", null); //获取失败
+		return Msg.fail().add("meals", null); //获取失败
 	}
 	@RequestMapping("/getRank")
 	
@@ -60,10 +60,10 @@ public class MealController {
 		
 		if(list != null && list.size()!=0) {//获取成功
 			
-			return Msg.success().add("mealRank", list);
+			return Msg.success().add("meals", list);
 			
 		}		
-		return Msg.fail().add("mealRank", null); //获取失败
+		return Msg.fail().add("meals", null); //获取失败
 	}
 	
 	@RequestMapping("/add")

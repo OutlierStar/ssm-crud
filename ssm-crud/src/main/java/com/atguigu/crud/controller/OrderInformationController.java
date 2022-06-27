@@ -33,12 +33,12 @@ public class OrderInformationController {
 		
 		if(list != null && list.size() != 0) {//不为空，则成功
 			
-			return Msg.success().add("orderInformationList", list);
+			return Msg.success().add("orderInformations", list);
 			
 		}else {//失败
 			
 			
-			return Msg.fail().add("orderInformationList", null);
+			return Msg.fail().add("orderInformations", null);
 			
 		}
 		
