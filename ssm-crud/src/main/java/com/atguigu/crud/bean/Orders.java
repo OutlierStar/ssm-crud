@@ -11,6 +11,8 @@ public class Orders {
 
     private Integer orderStatus;
 
+    private Float orderPrice;
+
     private String orderComment;
 
     private String orderRemarks;
@@ -45,6 +47,14 @@ public class Orders {
 
     public void setOrderStatus(Integer orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public Float getOrderPrice() {
+        return orderPrice;
+    }
+
+    public void setOrderPrice(Float orderPrice) {
+        this.orderPrice = orderPrice;
     }
 
     public String getOrderComment() {

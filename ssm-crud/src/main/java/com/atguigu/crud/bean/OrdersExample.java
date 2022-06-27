@@ -372,6 +372,66 @@ public class OrdersExample {
             return (Criteria) this;
         }
 
+        public Criteria andOrderPriceIsNull() {
+            addCriterion("order_price is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderPriceIsNotNull() {
+            addCriterion("order_price is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderPriceEqualTo(Float value) {
+            addCriterion("order_price =", value, "orderPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderPriceNotEqualTo(Float value) {
+            addCriterion("order_price <>", value, "orderPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderPriceGreaterThan(Float value) {
+            addCriterion("order_price >", value, "orderPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderPriceGreaterThanOrEqualTo(Float value) {
+            addCriterion("order_price >=", value, "orderPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderPriceLessThan(Float value) {
+            addCriterion("order_price <", value, "orderPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderPriceLessThanOrEqualTo(Float value) {
+            addCriterion("order_price <=", value, "orderPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderPriceIn(List<Float> values) {
+            addCriterion("order_price in", values, "orderPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderPriceNotIn(List<Float> values) {
+            addCriterion("order_price not in", values, "orderPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderPriceBetween(Float value1, Float value2) {
+            addCriterion("order_price between", value1, value2, "orderPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderPriceNotBetween(Float value1, Float value2) {
+            addCriterion("order_price not between", value1, value2, "orderPrice");
+            return (Criteria) this;
+        }
+
         public Criteria andOrderCommentIsNull() {
             addCriterion("order_comment is null");
             return (Criteria) this;
