@@ -441,6 +441,76 @@ public class OrdersExample {
             addCriterion("order_comment not between", value1, value2, "orderComment");
             return (Criteria) this;
         }
+
+        public Criteria andOrderRemarksIsNull() {
+            addCriterion("order_remarks is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderRemarksIsNotNull() {
+            addCriterion("order_remarks is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderRemarksEqualTo(String value) {
+            addCriterion("order_remarks =", value, "orderRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderRemarksNotEqualTo(String value) {
+            addCriterion("order_remarks <>", value, "orderRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderRemarksGreaterThan(String value) {
+            addCriterion("order_remarks >", value, "orderRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderRemarksGreaterThanOrEqualTo(String value) {
+            addCriterion("order_remarks >=", value, "orderRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderRemarksLessThan(String value) {
+            addCriterion("order_remarks <", value, "orderRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderRemarksLessThanOrEqualTo(String value) {
+            addCriterion("order_remarks <=", value, "orderRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderRemarksLike(String value) {
+            addCriterion("order_remarks like", value, "orderRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderRemarksNotLike(String value) {
+            addCriterion("order_remarks not like", value, "orderRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderRemarksIn(List<String> values) {
+            addCriterion("order_remarks in", values, "orderRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderRemarksNotIn(List<String> values) {
+            addCriterion("order_remarks not in", values, "orderRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderRemarksBetween(String value1, String value2) {
+            addCriterion("order_remarks between", value1, value2, "orderRemarks");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderRemarksNotBetween(String value1, String value2) {
+            addCriterion("order_remarks not between", value1, value2, "orderRemarks");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

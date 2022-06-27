@@ -13,6 +13,8 @@ public class Orders {
 
     private String orderComment;
 
+    private String orderRemarks;
+
     public Integer getOrderId() {
         return orderId;
     }
@@ -51,5 +53,13 @@ public class Orders {
 
     public void setOrderComment(String orderComment) {
         this.orderComment = orderComment == null ? null : orderComment.trim();
+    }
+
+    public String getOrderRemarks() {
+        return orderRemarks;
+    }
+
+    public void setOrderRemarks(String orderRemarks) {
+        this.orderRemarks = orderRemarks == null ? null : orderRemarks.trim();
     }
 }

@@ -90,9 +90,7 @@ public class UserService {
 		
 		userMapper.insertSelective(user);
 		
-		int count=(int)userMapper.countByExample(null);
-		
-		return getUserById(count);
+		return login(user.getUserAccount(),user.getUserPassword());
 		
 	}
 	
