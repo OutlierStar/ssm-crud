@@ -32,8 +32,7 @@ public class SortService {
 	 */
 	public boolean insertSort(Sort sort)
 	{
-	
-		 int flag=sortMapper.insertSelective(sort);
+		int flag=sortMapper.insertSelective(sort);
 		if(flag==1)
 			return true;
 		return false;

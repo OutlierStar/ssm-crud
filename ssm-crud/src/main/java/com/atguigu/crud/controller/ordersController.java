@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,13 +32,13 @@ public class ordersController {
 		
 		if(list != null&&list.size()!=0) {//获取成功
 			
-			return Msg.success().add("OrderList", list);
+			return Msg.success().add("orders", list);
 			
 		}		
-		return Msg.fail().add("OrderList" , null); //获取失败
+		return Msg.fail().add("orders" , null); //获取失败
 	}
 	
-	@RequestMapping("/getall")
+	@RequestMapping("/getAll")
 	public Msg getAllOrders() {//根据用户信息返回全部订单信息
 		
 	
@@ -45,10 +46,10 @@ public class ordersController {
 		
 		if(list != null&&list.size()!=0) {//获取成功
 			
-			return Msg.success().add("allList", list);
+			return Msg.success().add("orders", list);
 			
 		}		
-		return Msg.fail().add("allList" , null); //获取失败
+		return Msg.fail().add("orders" , null); //获取失败
 	}
 	
 	@RequestMapping("/changeStatus")
@@ -57,9 +58,9 @@ public class ordersController {
 		Orders neworder = orderService.alterOrderStatus(orderId,status);
 		if(neworder!=null) {
 			
-			return Msg.success().add("newOrder", neworder);
+			return Msg.success().add("order", neworder);
 		}
-		return Msg.fail().add("newOrder", null);
+		return Msg.fail().add("order", null);
 		
 	}
 	
@@ -69,9 +70,9 @@ public class ordersController {
 		Orders neworder = orderService.commentOrder(orderId,order_comment);
 		if(neworder!=null) {
 			
-			return Msg.success().add("newOrder", neworder);
+			return Msg.success().add("order", neworder);
 		}
-		return Msg.fail().add("newOrder", null);
+		return Msg.fail().add("order", null);
 		
 	}
 }

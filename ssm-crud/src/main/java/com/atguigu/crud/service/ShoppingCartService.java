@@ -22,9 +22,13 @@ import com.atguigu.crud.dao.ShoppingCartMapper;
 public class ShoppingCartService {
 	@Autowired
 	private ShoppingCartMapper shoppingCartMapper;
-	private OrdersMapper ordersMapper;
+	@Autowired
 	private OrderService orderService;
+	@Autowired
 	private OrderInformationMapper orderInformationMapper;
+	@Autowired
+	private MealsService mealsService;
+	
 	/**
 	 * 顾客使用
 	 * 添加菜品，加入购物车
@@ -97,24 +101,28 @@ public class ShoppingCartService {
 	
 	/**
 	 * 顾客使用
-	 * 提交购物车，插入订单表->获取订单号->插入订单信息表
+	 * 提交购物车。获取订单总价->插入订单表->获取订单号->插入订单信息表->删除购物车
 	 * @return 
 	 */
 	public Orders SubmitShoppingCart(int userId)
 	{
 		
+		float sumPrice=0;
 		
 		List<ShoppingCart> list=getAllShoppingCart(userId);
 		Orders order=new Orders();
 		
-		order.setOrderId(userId);
+		order.setUserId(userId);
 		
-		ordersMapper.insert(order);
+		orderService.insertOrder(order);
 		
 		int orderId=orderService.selectOrderId(userId).getOrderId();
 		
 		
 		for(ShoppingCart t:list) {
+			
+			sumPrice += mealsService.getMealsById(t.getMealsId()).getMealsPrice();
+			
 			
 			OrderInformation oi= new OrderInformation();
 			oi.setMealsId(t.getMealsId());
@@ -122,8 +130,16 @@ public class ShoppingCartService {
 			oi.setOrderId(orderId);
 			
 			orderInformationMapper.insert(oi);
+			ShoppingCartKey key = new ShoppingCartKey();
+			key.setUserId(t.getUserId());
+			key.setMealsId(t.getMealsId());
 			
 		}
+		
+		order = orderService.selectOrderId(userId);
+		
+		order.setOrderPrice(sumPrice);
+		orderService.updateOrder(order);
 		
 		return orderService.selectOrderId(userId);
 			

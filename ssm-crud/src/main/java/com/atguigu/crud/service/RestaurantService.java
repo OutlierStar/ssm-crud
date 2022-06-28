@@ -54,8 +54,11 @@ public class RestaurantService {
 	 */
 	public boolean updateRestaurant(Restaurant r)
 	{
-		
-		int flag=restaurantMapper.updateByExampleSelective(r, null);
+		Restaurant r1 = getRestaurant();
+		RestaurantExample re = new RestaurantExample();
+		RestaurantExample.Criteria criteria = re.createCriteria();
+		criteria.andRestaurantNameEqualTo(r1.getRestaurantName());
+		int flag=restaurantMapper.updateByExampleSelective(r, re);
 		if(flag==1)
 			return true;
 		return false;

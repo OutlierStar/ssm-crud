@@ -48,7 +48,7 @@ public class OrderService {
 	 * 顾客使用
 	 * 修改订单（评论）
 	 * @param orders
-	 * @return 
+	 * @return Orders
 	 */
 	public Orders commentOrder(int orderId,String comment)
 	{
@@ -61,7 +61,12 @@ public class OrderService {
 		return ordersMapper.selectByPrimaryKey(orderId);
 	}
 	
-	
+	/**
+	 * 修改订单状态
+	 * @param orderId
+	 * @param status
+	 * @return Orders
+	 */
 	public Orders alterOrderStatus(int orderId,int status)
 	{
 		
@@ -87,7 +92,7 @@ public class OrderService {
 	{
 		
 		OrdersExample order = new OrdersExample();
-		order.setOrderByClause("orderId desc");
+		order.setOrderByClause("order_Id desc");
 		OrdersExample.Criteria criteria = order.createCriteria();
 		criteria.andUserIdEqualTo(userId);
 		
@@ -96,6 +101,38 @@ public class OrderService {
 	}
 	
 
+	/**
+	 * 
+	 * 插入order
+	 * @param user
+	 * @return Orders
+	 */
+	public boolean insertOrder(Orders orders)
+	{
+		
+		int bool = ordersMapper.insertSelective(orders);
+		if(bool==1) {
+			return true;
+			
+		}
+		return false;
+		
+	}
+	
+	/**
+	 * 修改订单
+	 * @param order
+	 * @return boolean
+	 */
+	public boolean updateOrder(Orders order)
+	{
+		int flag = ordersMapper.updateByPrimaryKey(order);
+		if(flag==1) {
+			return true;
+		}
+		return false;
+		
+	}
 	
 	
 	

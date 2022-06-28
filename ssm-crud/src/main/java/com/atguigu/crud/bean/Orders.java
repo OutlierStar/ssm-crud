@@ -11,7 +11,11 @@ public class Orders {
 
     private Integer orderStatus;
 
+    private Float orderPrice;
+
     private String orderComment;
+
+    private String orderRemarks;
 
     public Integer getOrderId() {
         return orderId;
@@ -45,11 +49,27 @@ public class Orders {
         this.orderStatus = orderStatus;
     }
 
+    public Float getOrderPrice() {
+        return orderPrice;
+    }
+
+    public void setOrderPrice(Float orderPrice) {
+        this.orderPrice = orderPrice;
+    }
+
     public String getOrderComment() {
         return orderComment;
     }
 
     public void setOrderComment(String orderComment) {
         this.orderComment = orderComment == null ? null : orderComment.trim();
+    }
+
+    public String getOrderRemarks() {
+        return orderRemarks;
+    }
+
+    public void setOrderRemarks(String orderRemarks) {
+        this.orderRemarks = orderRemarks == null ? null : orderRemarks.trim();
     }
 }
