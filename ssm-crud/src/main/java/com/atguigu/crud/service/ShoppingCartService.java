@@ -126,6 +126,7 @@ public class ShoppingCartService {
 			
 			sumPrice += mealsService.getMealsById(mealId).getMealsPrice();
 			
+			
 			Meals meal = mealsService.getMealsById(mealId);
 			meal.setMealsSales(meal.getMealsSales()+t.getMealsNum());
 			mealsService.updateMeals(meal);
