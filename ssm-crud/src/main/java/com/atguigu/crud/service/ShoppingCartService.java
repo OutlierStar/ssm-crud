@@ -136,6 +136,8 @@ public class ShoppingCartService {
 			
 		}
 		
+		order = orderService.selectOrderId(userId);
+		
 		order.setOrderPrice(sumPrice);
 		orderService.updateOrder(order);
 		
