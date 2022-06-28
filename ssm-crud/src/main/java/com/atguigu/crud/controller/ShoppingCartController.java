@@ -32,12 +32,11 @@ public class ShoppingCartController {
 		if (list != null&&list.size()!=0) {//成功返回
 			
 			System.out.println("放回购物车信息成功！");
-			return Msg.success().add("shopingCarts", list);
-			
+			return Msg.success().add("shopingCart", list);
 		}else {//失败
 			
 			System.out.println("放回购物车信息失败！");
-			return Msg.fail().add("shopingCarts", null);
+			return Msg.fail().add("shopingCart", null);
 			
 		}
 		

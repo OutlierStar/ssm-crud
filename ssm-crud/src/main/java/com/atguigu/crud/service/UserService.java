@@ -87,7 +87,6 @@ public class UserService {
 	 */
 	public User insertUser(User user)
 	{
-		
 		int flag=userMapper.insertSelective(user);
 		if(flag==1)
 			return login(user.getUserAccount(),user.getUserPassword());
