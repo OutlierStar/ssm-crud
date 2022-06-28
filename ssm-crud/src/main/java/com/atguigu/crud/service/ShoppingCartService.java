@@ -124,7 +124,6 @@ public class ShoppingCartService {
 		for(ShoppingCart t:list) {
 			
 			int mealId=t.getMealsId();
-			
 			sumPrice += mealsService.getMealsById(mealId).getMealsPrice();
 			
 			
@@ -152,7 +151,30 @@ public class ShoppingCartService {
 		orderService.updateOrder(order);
 		
 		return orderService.selectOrderId(userId);
-			
+		
 	}
+	
+	
+	/**
+	 * 查询购物车总价
+	 * 
+	 * @param shop
+	 * @return float
+	 */
+	public float getShoppingCartPrice(int userId)
+	{
+		float price=0;
+		List<ShoppingCart> list = getAllShoppingCart(userId);
+		for(ShoppingCart t :list)
+		{
+			int mealId=t.getMealsId();
+			price+=mealsService.getMealsById(mealId).getMealsPrice()*t.getMealsNum();
+			
+			
+		}
+		return price;
+		
+	}
+	
 	
 }
