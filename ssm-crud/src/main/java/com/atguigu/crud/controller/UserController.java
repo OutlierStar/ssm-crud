@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.w3c.dom.stylesheets.LinkStyle;
 
@@ -20,8 +23,9 @@ import com.atguigu.crud.bean.User;
 import com.atguigu.crud.service.OrderService;
 import com.atguigu.crud.service.UserService;
 
-@RestController
+@Controller
 @RequestMapping("/user")
+@ResponseBody
 public class UserController {
 	
 	@Autowired
@@ -55,15 +59,17 @@ public class UserController {
 			
 		}else {//登陆失败
 			
-			
 			return Msg.fail().add("user", null);
 			
 		}
 		
 	}
 	
-	@RequestMapping("/register")
-	public Msg register(User user) {//注册
+//	@RequestMapping(value = "/register", method = RequestMethod.POST, produces = {"application/json;character:utf-8"})
+//	@RequestMapping(value = "/register", method = RequestMethod.GET) 
+//	@RequestMapping(value = "/register", produces = {"application/json;character:utf-8"}) 
+	@RequestMapping(value = "/register") 
+	public Msg register(@RequestBody User user) {//注册
 		
 		User newUser = userService.insertUser(user);
 		if(user!=null) {

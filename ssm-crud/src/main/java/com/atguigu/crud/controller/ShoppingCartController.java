@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,12 +30,12 @@ public class ShoppingCartController {
 		if (list != null&&list.size()!=0) {//成功返回
 			
 			System.out.println("放回购物车信息成功！");
-			return Msg.success().add("ShopingCart", list);
+			return Msg.success().add("shopingCart", list);
 			
 		}else {//失败
 			
 			System.out.println("放回购物车信息失败！");
-			return Msg.fail().add("ShopingCart", null);
+			return Msg.fail().add("shopingCart", null);
 			
 		}
 		
