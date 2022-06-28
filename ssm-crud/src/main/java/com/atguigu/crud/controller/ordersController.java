@@ -75,5 +75,16 @@ public class ordersController {
 		return Msg.fail().add("order", null);
 		
 	}
+	@RequestMapping("/addMark")
+	public Msg addOrderMark(int orderId,String mark) {//增加备注
+		
+		Orders neworder = orderService.addOrderRemarks(orderId,mark);
+		if(neworder!=null) {
+			
+			return Msg.success().add("order", neworder);
+		}
+		return Msg.fail().add("order", null);
+		
+	}
 }
 

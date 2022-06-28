@@ -62,6 +62,26 @@ public class OrderService {
 	}
 	
 	/**
+	 * 
+	 * 添加备注
+	 * @param orderId
+	 * @param remarks
+	 * @return Orders
+	 */
+	public Orders addOrderRemarks(int orderId,String remarks)
+	{
+		Orders o = ordersMapper.selectByPrimaryKey(orderId);
+		o.setOrderComment(remarks);
+		
+		ordersMapper.updateByPrimaryKeySelective(o);
+		
+		return ordersMapper.selectByPrimaryKey(orderId);
+		
+		
+	}
+	
+	
+	/**
 	 * 修改订单状态
 	 * @param orderId
 	 * @param status

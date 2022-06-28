@@ -115,6 +115,8 @@ public class ShoppingCartService {
 		
 		order.setUserId(userId);
 		
+		order.setOrderTime(new Date());
+		order.setOrderStatus(1);
 		orderService.insertOrder(order);
 		
 		int orderId=orderService.selectOrderId(userId).getOrderId();
