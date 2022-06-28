@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import com.atguigu.crud.service.UserService;
 
 @RestController
 @RequestMapping("/sort")
+@CrossOrigin //允许所有ip跨域
 public class SortController {
 	
 	@Autowired

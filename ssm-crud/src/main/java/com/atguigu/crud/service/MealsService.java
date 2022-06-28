@@ -67,6 +67,7 @@ public class MealsService {
 	 */
 	public boolean insertMeals(Meals meals)
 	{
+		meals.setMealsSales(0);
 		int flag=mealsMapper.insertSelective(meals);
 		if(flag==1)
 			return true;

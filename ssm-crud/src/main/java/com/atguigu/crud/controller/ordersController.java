@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ import com.atguigu.crud.service.UserService;
 
 @RestController
 @RequestMapping("/order")
+@CrossOrigin //允许所有ip跨域
 public class ordersController {
 	
 	@Autowired
@@ -68,6 +70,17 @@ public class ordersController {
 	public Msg addOrderComments(int orderId,String order_comment) {//增加评论
 		
 		Orders neworder = orderService.commentOrder(orderId,order_comment);
+		if(neworder!=null) {
+			
+			return Msg.success().add("order", neworder);
+		}
+		return Msg.fail().add("order", null);
+		
+	}
+	@RequestMapping("/addMark")
+	public Msg addOrderMark(int orderId,String mark) {//增加备注
+		
+		Orders neworder = orderService.addOrderRemarks(orderId,mark);
 		if(neworder!=null) {
 			
 			return Msg.success().add("order", neworder);

@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.atguigu.crud.bean.Meals;
 import com.atguigu.crud.bean.OrderInformation;
 import com.atguigu.crud.bean.Orders;
 import com.atguigu.crud.bean.ShoppingCart;
@@ -101,7 +102,7 @@ public class ShoppingCartService {
 	
 	/**
 	 * 顾客使用
-	 * 提交购物车。获取订单总价->插入订单表->获取订单号->插入订单信息表->删除购物车
+	 * 提交购物车。插入订单表->获取订单号->销量+1->插入订单信息表->删除购物车->更新订单总价
 	 * @return 
 	 */
 	public Orders SubmitShoppingCart(int userId)
@@ -114,15 +115,23 @@ public class ShoppingCartService {
 		
 		order.setUserId(userId);
 		
+		order.setOrderTime(new Date());
+		order.setOrderStatus(1);
 		orderService.insertOrder(order);
 		
 		int orderId=orderService.selectOrderId(userId).getOrderId();
 		
 		
+		
 		for(ShoppingCart t:list) {
 			
-			sumPrice += mealsService.getMealsById(t.getMealsId()).getMealsPrice();
+			int mealId=t.getMealsId();
+			sumPrice += mealsService.getMealsById(mealId).getMealsPrice();
 			
+			
+			Meals meal = mealsService.getMealsById(mealId);
+			meal.setMealsSales(meal.getMealsSales()+t.getMealsNum());
+			mealsService.updateMeals(meal);
 			
 			OrderInformation oi= new OrderInformation();
 			oi.setMealsId(t.getMealsId());
@@ -130,9 +139,11 @@ public class ShoppingCartService {
 			oi.setOrderId(orderId);
 			
 			orderInformationMapper.insert(oi);
+			
 			ShoppingCartKey key = new ShoppingCartKey();
 			key.setUserId(t.getUserId());
 			key.setMealsId(t.getMealsId());
+			shoppingCartMapper.deleteByPrimaryKey(key);
 			
 		}
 		
@@ -142,7 +153,30 @@ public class ShoppingCartService {
 		orderService.updateOrder(order);
 		
 		return orderService.selectOrderId(userId);
-			
+		
 	}
+	
+	
+	/**
+	 * 查询购物车总价
+	 * 
+	 * @param shop
+	 * @return float
+	 */
+	public float getShoppingCartPrice(int userId)
+	{
+		float price=0;
+		List<ShoppingCart> list = getAllShoppingCart(userId);
+		for(ShoppingCart t :list)
+		{
+			int mealId=t.getMealsId();
+			price+=mealsService.getMealsById(mealId).getMealsPrice()*t.getMealsNum();
+			
+			
+		}
+		return price;
+		
+	}
+	
 	
 }
