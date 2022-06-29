@@ -1,7 +1,7 @@
 package com.atguigu.crud.service;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,7 @@ import com.atguigu.crud.bean.UserExample;
 import com.atguigu.crud.dao.OrderInformationMapper;
 import com.atguigu.crud.dao.OrdersMapper;
 import com.atguigu.crud.dao.ShoppingCartMapper;
+import com.mysql.fabric.xmlrpc.base.Data;
 
 @Service
 public class ShoppingCartService {
@@ -115,7 +116,7 @@ public class ShoppingCartService {
 		
 		order.setUserId(userId);
 		
-		order.setOrderTime(new Date());
+		order.setOrderTime(new Date(System.currentTimeMillis()));
 		order.setOrderStatus(1);
 		orderService.insertOrder(order);
 		
