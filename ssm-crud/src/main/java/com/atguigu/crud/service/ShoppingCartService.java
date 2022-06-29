@@ -127,7 +127,7 @@ public class ShoppingCartService {
 		for(ShoppingCart t:list) {
 			
 			int mealId=t.getMealsId();
-			sumPrice += mealsService.getMealsById(mealId).getMealsPrice();
+			sumPrice += mealsService.getMealsById(mealId).getMealsPrice()*t.getMealsNum();
 			
 			
 			Meals meal = mealsService.getMealsById(mealId);
