@@ -1,6 +1,11 @@
 package com.atguigu.crud.service;
 
 import java.text.DecimalFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 
 import org.jfree.chart.ChartFactory;
@@ -15,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.atguigu.crud.bean.Orders;
+import com.atguigu.crud.bean.OrdersExample;
 import com.atguigu.crud.dao.OrdersMapper;
 
 @Service
@@ -28,7 +34,7 @@ public class ReportFormService {
 	 * 生成营销额折线图，按时间分类
 	 * 
 	 */
-	public void salesReport()
+	public void salesCountReport()
 	{
 		
 		
@@ -76,7 +82,7 @@ public class ReportFormService {
 	 * 
 	 * 生成订单量折线图，按时间分类
 	 */
-	public void sortReport()
+	public void sortCountReport()
 	{
 		
 		List<Orders> list= ordersMapper.selectSortCountGroupByTime();
@@ -117,6 +123,64 @@ public class ReportFormService {
 	  	chartFrame.setVisible(true);
 	  	
 	}
+	
+	/**
+	 * 获取今日订单总量
+	 * @return int
+	 */
+	public int getToDayOrderCount()
+	{
+		
+		Orders list = ordersMapper.selectByPrimaryKey(20);
+		Date date = new Date();
+		System.out.println((date==list.getOrderTime()));
+		System.out.println(list.getOrderTime().getTime()+"----"+date.getTime());
+		
+		return 0;
+		
+//		OrdersExample order = new OrdersExample();
+//		OrdersExample.Criteria criteria = order.createCriteria();
+//		criteria.andOrderTimeEqualTo(n);
+//		
+//		return (int)ordersMapper.countByExample(order);
+		
+	}
+	
+	
+	/**
+	 * 
+	 * 获取今日营销额
+	 * @return float
+	 */
+//	public float getToDaySalesCount()
+//	{
+//		
+//		
+//	}
+	
+	/**
+	 * 
+	 * 获取订单总量
+	 * @return int
+	 */
+	public int getAllOrderCount()
+	{
+		
+		return (int) ordersMapper.countByExample(null);
+		
+	}
+	
+	/**
+	 * 
+	 * 获取总营销额
+	 * @return float
+	 */
+//	public float getAllSalesCount()
+//	{
+//		
+//		
+//	}
+	
 	
 	
 	
