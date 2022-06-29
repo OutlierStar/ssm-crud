@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.atguigu.crud.bean.Orders">
     <id column="order_id" jdbcType="INTEGER" property="orderId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="order_time" jdbcType="TIME" property="orderTime" />
+    <result column="order_time" jdbcType="DATE" property="orderTime" />
     <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
     <result column="order_price" jdbcType="REAL" property="orderPrice" />
     <result column="order_comment" jdbcType="VARCHAR" property="orderComment" />

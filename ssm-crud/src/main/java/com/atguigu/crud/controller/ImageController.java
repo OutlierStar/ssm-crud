@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,7 +31,7 @@ import com.atguigu.crud.service.UserService;
 public class ImageController {
 	
 		@RequestMapping("/set") 
-		public Msg upload(ImageFile file,int mealsId) throws IllegalStateException, IOException{ 
+		public Msg upload(@RequestBody ImageFile file,int mealsId) throws IllegalStateException, IOException{ 
 			// 获取随机文件名 
 			//RandomStringUtils类导入jar包位置 https://mvnrepository.com/artifact/org.apache.struts.xwork/xwork-core/2.2.1
 			String name = "meals"+mealsId;

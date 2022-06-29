@@ -29,7 +29,7 @@ public class ordersController {
 	@RequestMapping("/getByUserId")
 	public Msg getAllOrdersByUserId(int userId) {//根据用户信息返回全部订单信息
 		
-	
+		
 		List<Orders> list = orderService.getOrdersByUser(userId);
 		
 		if(list != null&&list.size()!=0) {//获取成功
