@@ -27,4 +27,8 @@ public interface OrdersMapper {
     int updateByPrimaryKeySelective(Orders record);
 
     int updateByPrimaryKey(Orders record);
+    
+    List<Orders> selectSortCountGroupByTime();
+    List<Orders> selectSortPriceGroupByTime();
+    
 }

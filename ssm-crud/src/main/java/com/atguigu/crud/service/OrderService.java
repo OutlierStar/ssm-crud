@@ -71,7 +71,7 @@ public class OrderService {
 	public Orders addOrderRemarks(int orderId,String remarks)
 	{
 		Orders o = ordersMapper.selectByPrimaryKey(orderId);
-		o.setOrderComment(remarks);
+		o.setOrderRemarks(remarks);
 		
 		ordersMapper.updateByPrimaryKeySelective(o);
 		

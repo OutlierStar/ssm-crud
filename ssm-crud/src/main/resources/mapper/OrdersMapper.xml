@@ -240,4 +240,14 @@
       order_remarks = #{orderRemarks,jdbcType=VARCHAR}
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectSortPriceGroupByTime" resultMap="BaseResultMap">
+    SELECT order_time,SUM(order_price) AS order_price FROM Orders GROUP BY order_time
+  </select>
+  
+   <select id="selectSortCountGroupByTime" resultMap="BaseResultMap">
+    SELECT order_time,COUNT(*) AS order_price FROM Orders GROUP BY order_time
+  </select>
+  
+  
 </mapper>
