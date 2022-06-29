@@ -57,9 +57,9 @@ public class ImageController {
 		        //ServletContext sc = request.getSession().getServletContext();  
 		        // 上传位置  
 		       // String path = sc.getRealPath("/img") + "/"; // 设定文件保存的目录  
-		        String path = "D:/";
-		        
-		        System.out.println(Class.class.getClass().getResource("/").getPath());
+		        String path = "";
+		     
+	
 		        
 		        
 		        File f = new File(path);  
