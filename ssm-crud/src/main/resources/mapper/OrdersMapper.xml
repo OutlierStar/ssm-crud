@@ -4,11 +4,13 @@
   <resultMap id="BaseResultMap" type="com.atguigu.crud.bean.Orders">
     <id column="order_id" jdbcType="INTEGER" property="orderId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="order_time" jdbcType="DATE" property="orderTime" />
     <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
     <result column="order_price" jdbcType="REAL" property="orderPrice" />
     <result column="order_comment" jdbcType="VARCHAR" property="orderComment" />
     <result column="order_remarks" jdbcType="VARCHAR" property="orderRemarks" />
+    <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="order_payment" jdbcType="TIMESTAMP" property="orderPayment" />
+    <result column="order_finish" jdbcType="TIMESTAMP" property="orderFinish" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    order_id, user_id, order_time, order_status, order_price, order_comment, order_remarks
+    order_id, user_id, order_status, order_price, order_comment, order_remarks, order_time, 
+    order_payment, order_finish
   </sql>
   <select id="selectByExample" parameterType="com.atguigu.crud.bean.OrdersExample" resultMap="BaseResultMap">
     select
@@ -102,12 +105,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.atguigu.crud.bean.Orders">
-    insert into Orders (order_id, user_id, order_time, 
-      order_status, order_price, order_comment, 
-      order_remarks)
-    values (#{orderId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderTime,jdbcType=TIME}, 
-      #{orderStatus,jdbcType=INTEGER}, #{orderPrice,jdbcType=REAL}, #{orderComment,jdbcType=VARCHAR}, 
-      #{orderRemarks,jdbcType=VARCHAR})
+    insert into Orders (order_id, user_id, order_status, 
+      order_price, order_comment, order_remarks, 
+      order_time, order_payment, order_finish
+      )
+    values (#{orderId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER}, 
+      #{orderPrice,jdbcType=REAL}, #{orderComment,jdbcType=VARCHAR}, #{orderRemarks,jdbcType=VARCHAR}, 
+      #{orderTime,jdbcType=TIMESTAMP}, #{orderPayment,jdbcType=TIMESTAMP}, #{orderFinish,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.atguigu.crud.bean.Orders">
     insert into Orders
@@ -117,9 +122,6 @@
       </if>
       <if test="userId != null">
         user_id,
-      </if>
-      <if test="orderTime != null">
-        order_time,
       </if>
       <if test="orderStatus != null">
         order_status,
@@ -133,6 +135,15 @@
       <if test="orderRemarks != null">
         order_remarks,
       </if>
+      <if test="orderTime != null">
+        order_time,
+      </if>
+      <if test="orderPayment != null">
+        order_payment,
+      </if>
+      <if test="orderFinish != null">
+        order_finish,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orderId != null">
@@ -140,9 +151,6 @@
       </if>
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="orderTime != null">
-        #{orderTime,jdbcType=TIME},
       </if>
       <if test="orderStatus != null">
         #{orderStatus,jdbcType=INTEGER},
@@ -155,6 +163,15 @@
       </if>
       <if test="orderRemarks != null">
         #{orderRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderPayment != null">
+        #{orderPayment,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderFinish != null">
+        #{orderFinish,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -173,9 +190,6 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.orderTime != null">
-        order_time = #{record.orderTime,jdbcType=TIME},
-      </if>
       <if test="record.orderStatus != null">
         order_status = #{record.orderStatus,jdbcType=INTEGER},
       </if>
@@ -188,6 +202,15 @@
       <if test="record.orderRemarks != null">
         order_remarks = #{record.orderRemarks,jdbcType=VARCHAR},
       </if>
+      <if test="record.orderTime != null">
+        order_time = #{record.orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderPayment != null">
+        order_payment = #{record.orderPayment,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderFinish != null">
+        order_finish = #{record.orderFinish,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -197,11 +220,13 @@
     update Orders
     set order_id = #{record.orderId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
-      order_time = #{record.orderTime,jdbcType=TIME},
       order_status = #{record.orderStatus,jdbcType=INTEGER},
       order_price = #{record.orderPrice,jdbcType=REAL},
       order_comment = #{record.orderComment,jdbcType=VARCHAR},
-      order_remarks = #{record.orderRemarks,jdbcType=VARCHAR}
+      order_remarks = #{record.orderRemarks,jdbcType=VARCHAR},
+      order_time = #{record.orderTime,jdbcType=TIMESTAMP},
+      order_payment = #{record.orderPayment,jdbcType=TIMESTAMP},
+      order_finish = #{record.orderFinish,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -211,9 +236,6 @@
     <set>
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="orderTime != null">
-        order_time = #{orderTime,jdbcType=TIME},
       </if>
       <if test="orderStatus != null">
         order_status = #{orderStatus,jdbcType=INTEGER},
@@ -227,27 +249,28 @@
       <if test="orderRemarks != null">
         order_remarks = #{orderRemarks,jdbcType=VARCHAR},
       </if>
+      <if test="orderTime != null">
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderPayment != null">
+        order_payment = #{orderPayment,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderFinish != null">
+        order_finish = #{orderFinish,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.atguigu.crud.bean.Orders">
     update Orders
     set user_id = #{userId,jdbcType=INTEGER},
-      order_time = #{orderTime,jdbcType=TIME},
       order_status = #{orderStatus,jdbcType=INTEGER},
       order_price = #{orderPrice,jdbcType=REAL},
       order_comment = #{orderComment,jdbcType=VARCHAR},
-      order_remarks = #{orderRemarks,jdbcType=VARCHAR}
+      order_remarks = #{orderRemarks,jdbcType=VARCHAR},
+      order_time = #{orderTime,jdbcType=TIMESTAMP},
+      order_payment = #{orderPayment,jdbcType=TIMESTAMP},
+      order_finish = #{orderFinish,jdbcType=TIMESTAMP}
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
-  
-  <select id="selectSortPriceGroupByTime" resultMap="BaseResultMap">
-    SELECT order_time,SUM(order_price) AS order_price FROM Orders GROUP BY order_time
-  </select>
-  
-   <select id="selectSortCountGroupByTime" resultMap="BaseResultMap">
-    SELECT order_time,COUNT(*) AS order_price FROM Orders GROUP BY order_time
-  </select>
-  
-  
 </mapper>

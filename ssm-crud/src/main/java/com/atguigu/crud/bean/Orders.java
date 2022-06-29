@@ -1,13 +1,11 @@
 package com.atguigu.crud.bean;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Orders {
     private Integer orderId;
 
     private Integer userId;
-
-    private Date orderTime;
 
     private Integer orderStatus;
 
@@ -16,6 +14,12 @@ public class Orders {
     private String orderComment;
 
     private String orderRemarks;
+
+    private Date orderTime;
+
+    private Date orderPayment;
+
+    private Date orderFinish;
 
     public Integer getOrderId() {
         return orderId;
@@ -31,14 +35,6 @@ public class Orders {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public Date getOrderTime() {
-        return orderTime;
-    }
-
-    public void setOrderTime(Date orderTime) {
-        this.orderTime = orderTime;
     }
 
     public Integer getOrderStatus() {
@@ -71,5 +67,29 @@ public class Orders {
 
     public void setOrderRemarks(String orderRemarks) {
         this.orderRemarks = orderRemarks == null ? null : orderRemarks.trim();
+    }
+
+    public Date getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(Date orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public Date getOrderPayment() {
+        return orderPayment;
+    }
+
+    public void setOrderPayment(Date orderPayment) {
+        this.orderPayment = orderPayment;
+    }
+
+    public Date getOrderFinish() {
+        return orderFinish;
+    }
+
+    public void setOrderFinish(Date orderFinish) {
+        this.orderFinish = orderFinish;
     }
 }
