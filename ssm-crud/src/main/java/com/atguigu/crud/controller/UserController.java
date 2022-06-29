@@ -82,6 +82,19 @@ public class UserController {
 		return Msg.fail().add("user", null);
 	}
 	
+	@RequestMapping(value = "/registerVisitor") 
+	public Msg registerVisitor(@RequestBody User user) {//注册
+		
+		User newUser = userService.inserVisitortUser(user);
+		if(user!=null) {
+			
+			return Msg.success().add("user", newUser);
+			
+		}
+		return Msg.fail().add("user", null);
+	}
+	
+	
 	@RequestMapping("/search")
 	public Msg search(int userId) {//查询个人信息
 		

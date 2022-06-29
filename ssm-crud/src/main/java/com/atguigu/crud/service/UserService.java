@@ -47,8 +47,6 @@ public class UserService {
 	
 	public User login(String account,String password)
 	{
-		
-		
 		  UserExample user = new UserExample();
 		  
 		  UserExample.Criteria criteria = user.createCriteria(); //构造自定义查询条件
@@ -95,7 +93,25 @@ public class UserService {
 		
 	}
 	
-	
-	
+	/**
+	 * 注册游客用户
+	 * @param user
+	 * @return User
+	 * @author wdx
+	 */
+	public User inserVisitortUser(User user)
+	{
+		int flag=userMapper.insertSelective(user);
+		if(flag==1) {
+			UserExample newuser = new UserExample();
+			UserExample.Criteria criteria = newuser.createCriteria(); //构造自定义查询条件
+		    criteria.andUserNameEqualTo(user.getUserName());
+		    List<User> t = userMapper.selectByExample(newuser);
+		    if(t != null&&t.size()!=0) {//判断列表不为空
+		    	return t.get(0);
+		    }
+		}
+	    return null;
+	}
 	
 }

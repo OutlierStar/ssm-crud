@@ -36,6 +36,15 @@ public class ImageController {
 			//RandomStringUtils类导入jar包位置 https://mvnrepository.com/artifact/org.apache.struts.xwork/xwork-core/2.2.1
 			String name = "meals"+mealsId;
 			// 获取原有文件名称（包括文件类型） 
+			if(file==null) {
+				System.out.println("图片为空!");
+			}
+			if(file.getImage()==null) {
+				System.out.println("图片getImage()为空!");
+			}
+			if(file.image==null) {
+				System.out.println("图片image为空!");
+			}
 			String fileName = file.getImage().getOriginalFilename(); 
 			// 截取文件类型 
 			int indexdot = fileName.indexOf("."); 

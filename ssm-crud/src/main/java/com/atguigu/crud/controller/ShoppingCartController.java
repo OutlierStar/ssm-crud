@@ -32,14 +32,11 @@ public class ShoppingCartController {
 		List<ShoppingCart> list = shoppingCartService.getAllShoppingCart(userId);
 		float sum = shoppingCartService.getShoppingCartPrice(userId);
 		if (list != null&&list.size()!=0) {//成功返回
-			
 			System.out.println("放回购物车信息成功！");
 			return Msg.success().add("shopingCart", list).add("price", sum);
 		}else {//失败
-			
 			System.out.println("放回购物车信息失败！");
 			return Msg.fail().add("shopingCart", null).add("price", sum);
-			
 		}
 		
 	}
