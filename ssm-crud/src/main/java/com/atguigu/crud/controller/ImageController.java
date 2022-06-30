@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,17 +58,14 @@ public class ImageController {
 		        //ServletContext sc = request.getSession().getServletContext();  
 		        // 上传位置  
 		       // String path = sc.getRealPath("/img") + "/"; // 设定文件保存的目录  
-		        String path = "";
-		     
-	
+		        String path = ClassUtils.getDefaultClassLoader().getResource("image").getPath();
 		        
-		        
-		        File f = new File(path);  
+		        File f = new File(path); 
 		        if (!f.exists())  
 		            f.mkdirs();  
 		        if (!file.isEmpty()) {  
 		            try {  
-		                FileOutputStream fos = new FileOutputStream(path +'/'+ newFileName);  
+		                FileOutputStream fos = new FileOutputStream(path +""+ newFileName);  
 		                InputStream in = file.getInputStream();  
 		                int b = 0;  
 		                while ((b = in.read()) != -1) {  
@@ -80,11 +78,11 @@ public class ImageController {
 		            }  
 		        }  
 		  
-		        System.out.println("上传图片到:" + path +"/"+ newFileName);  
+		        System.out.println("上传图片到:" + path +""+ newFileName);  
 		        // 保存文件地址，用于JSP页面回显  
-		        model.addAttribute("fileUrl", path +"/"+ newFileName);  
+		        model.addAttribute("fileUrl", path +""+ newFileName);  
 		        
-		        String src = path +"/"+ newFileName;
+		        String src = path +""+ newFileName;
 				return Msg.success().add("path", src);
 		}
 	
