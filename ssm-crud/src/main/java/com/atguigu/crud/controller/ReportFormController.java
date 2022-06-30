@@ -1,10 +1,29 @@
 package com.atguigu.crud.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.atguigu.crud.bean.Msg;
+import com.atguigu.crud.bean.Orders;
+import com.atguigu.crud.dao.OrdersMapper;
 import com.atguigu.crud.service.ReportFormService;
 
 @RestController
@@ -13,21 +32,168 @@ import com.atguigu.crud.service.ReportFormService;
 public class ReportFormController {
 
 	@Autowired
-	private ReportFormService reportFormService;
+	private OrdersMapper ordersMapper;
 	
 	
 	
-	@RequestMapping("/test")
-	public void test()
+	
+	
+	
+	/**
+	 * 生成营销额折线图，按时间分类
+	 * 
+	 */
+	@RequestMapping("/test2")
+	public void salesCountReport(HttpServletRequest request)
 	{
-		reportFormService.sortCountReport();
-		reportFormService.salesCountReport();
 		
-		System.out.println("今日营销额："+reportFormService.getToDaySalesCount());
-		System.out.println("今日订单量："+reportFormService.getToDayOrderCount());
-		System.out.println("总营销额："+reportFormService.getAllSalesCount());
-		System.out.println("总订单量："+reportFormService.getAllOrderCount());
+		
+		
+		List<Orders> list= ordersMapper.selectSortPriceGroupByTime();
+		
+		
+    	DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        //设置数据	,数值,第几条线,分类
+    	SimpleDateFormat sdf =
+                new SimpleDateFormat("yyyy-MM-dd");
+    	
+        for(Orders t :list)
+        	dataset.addValue( t.getOrderPrice() , "营销额" , sdf.format(t.getOrderFinish()) );        
+
+    	JFreeChart jfreeChart = ChartFactory.createLineChart("当天营销额折线图","时间","营销额",
+    			dataset, PlotOrientation.VERTICAL, true, false,
+     			false);
+    	
+    	
+
+    	
+        CategoryPlot plot = jfreeChart.getCategoryPlot(); 
+
+    	 LineAndShapeRenderer renderer  =  (LineAndShapeRenderer)plot.getRenderer();
+         DecimalFormat decimalformat1  =   new  DecimalFormat( " ##.## " ); // 数据点显示数据值的格式
+         renderer.setItemLabelGenerator( new  StandardCategoryItemLabelGenerator( " {2} " , decimalformat1));
+                                            // 上面这句是设置数据项标签的生成器
+         renderer.setItemLabelsVisible( true ); // 设置项标签显示
+         renderer.setBaseItemLabelsVisible( true ); // 基本项标签显示
+        
+     	int width = 640; /* Width of the image */
+       int height = 480; /* Height of the image */ 
+       String realPath = request.getSession().  
+               getServletContext().getRealPath("/"); 
+       String path = realPath+"static\\images\\"+"营销额.png"; 
+       File pieChart = new File(path); 
+       
+       try {
+ 			ChartUtilities.saveChartAsPNG( pieChart , jfreeChart , width , height );
+ 		} catch (IOException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		}
+
+		
 	}
 	
+	/**
+	 * 
+	 * 生成订单量折线图，按时间分类
+	 */
+	@RequestMapping("/test1")
+	public void sortCountReport(HttpServletRequest request)
+	{
+		
+		List<Orders> list= ordersMapper.selectSortCountGroupByTime();
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        //设置数据	,数值,第几条线,分类
+		SimpleDateFormat sdf =
+                new SimpleDateFormat("yyyy-MM-dd");
+    	
+        for(Orders t :list)
+        	dataset.addValue( t.getOrderPrice() , "订单量" , sdf.format(t.getOrderFinish()) );        
+ 
+    	JFreeChart jfreeChart = ChartFactory.createLineChart("当天订单量折线图","时间","订单量",
+    			dataset, PlotOrientation.VERTICAL, true, false,
+     			false);
+    	
+
+    	CategoryPlot plot = jfreeChart.getCategoryPlot(); 
+
+   	 LineAndShapeRenderer renderer  =  (LineAndShapeRenderer)plot.getRenderer();
+        DecimalFormat decimalformat1  =   new  DecimalFormat( " ##.## " ); // 数据点显示数据值的格式
+        renderer.setItemLabelGenerator( new  StandardCategoryItemLabelGenerator( " {2} " , decimalformat1));
+                                           // 上面这句是设置数据项标签的生成器
+        renderer.setItemLabelsVisible( true ); // 设置项标签显示
+        renderer.setBaseItemLabelsVisible( true ); // 基本项标签显示
+       
+        
+        
+      int width = 640; /* Width of the image */
+      int height = 480; /* Height of the image */
+      
+      String realPath = request.getSession().  
+              getServletContext().getRealPath("/"); 
+      
+      String path = realPath+"static\\images\\"+"订单量.png";
+  
+    
+      File pieChart = new File(path); 
+      try {
+			ChartUtilities.saveChartAsPNG( pieChart , jfreeChart , width , height );
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+
+     
+	}
+	
+//	/**
+//	 * 获取今日订单总量
+//	 * @return int
+//	 */
+//	public int getToDayOrderCount()
+//	{
+//		
+//		
+//		return ordersMapper.selectToDaySortCount().getOrderId();
+//		
+//	}
+//	
+//	
+//	/**
+//	 * 
+//	 * 获取今日营销额
+//	 * @return float
+//	 */
+//	public float getToDaySalesCount()
+//	{
+//
+//		return ordersMapper.selectToDaySortSales().getOrderPrice();
+//		
+//	}
+//	
+//	/**
+//	 * 
+//	 * 获取订单总量
+//	 * @return int
+//	 */
+//	public int getAllOrderCount()
+//	{
+//		
+//		return (int) ordersMapper.countByExample(null);
+//		
+//	}
+//	
+//	/**
+//	 * 
+//	 * 获取总营销额
+//	 * @return float
+//	 */
+//	public float getAllSalesCount()
+//	{
+//		
+//		return ordersMapper.countSortSales().getOrderPrice();
+//		
+//	}
 	
 }
