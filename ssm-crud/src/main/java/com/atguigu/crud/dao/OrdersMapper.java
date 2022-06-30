@@ -28,7 +28,11 @@ public interface OrdersMapper {
 
     int updateByPrimaryKey(Orders record);
     
-    List<Orders> selectSortCountGroupByTime();
-    List<Orders> selectSortPriceGroupByTime();
+    List<Orders> selectSortCountGroupByTime();//根据时间分类订单量
+    List<Orders> selectSortPriceGroupByTime();//根据时间分类营销额
+    Orders selectToDaySortCount();//今日订单量
+    Orders selectToDaySortSales();//今日营销额
+    Orders countSortSales();//总订单量
+    
     
 }

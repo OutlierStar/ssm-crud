@@ -273,4 +273,25 @@
       order_finish = #{orderFinish,jdbcType=TIMESTAMP}
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectSortPriceGroupByTime" resultMap="BaseResultMap">
+SELECT SUM(order_price) AS order_price,DATE_FORMAT(order_finish,'%Y-%m-%d')AS order_finish  from Orders GROUP BY DATE_FORMAT(order_finish,'%Y-%m-%d')    
+</select>
+  
+   <select id="selectSortCountGroupByTime" resultMap="BaseResultMap">
+SELECT COUNT(*) AS order_price,DATE_FORMAT(order_finish,'%Y-%m-%d')AS order_finish  from Orders GROUP BY DATE_FORMAT(order_finish,'%Y-%m-%d')    
+</select>
+
+  <select id="selectToDaySortCount" resultMap="BaseResultMap">
+SELECT COUNT(*) AS order_id,DATE_FORMAT(order_finish,'%Y-%m-%d')AS order_finish  from Orders WHERE DATE_FORMAT(order_finish,'%Y-%m-%d')=curdate()</select>
+
+<select id="selectToDaySortSales" resultMap="BaseResultMap">
+SELECT SUM(order_price) AS order_price,DATE_FORMAT(order_finish,'%Y-%m-%d')AS order_finish  from Orders WHERE DATE_FORMAT(order_finish,'%Y-%m-%d')=curdate()
+</select>
+
+
+  <select id="countSortSales" resultMap="BaseResultMap">
+SELECT SUM(order_price) AS order_price  from Orders 
+</select>
+  
 </mapper>

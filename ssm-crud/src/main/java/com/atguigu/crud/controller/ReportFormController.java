@@ -20,9 +20,13 @@ public class ReportFormController {
 	@RequestMapping("/test")
 	public void test()
 	{
-		reportFormService.salesReport();
-		reportFormService.sortReport();
+		reportFormService.sortCountReport();
+		reportFormService.salesCountReport();
 		
+		System.out.println("今日营销额："+reportFormService.getToDaySalesCount());
+		System.out.println("今日订单量："+reportFormService.getToDayOrderCount());
+		System.out.println("总营销额："+reportFormService.getAllSalesCount());
+		System.out.println("总订单量："+reportFormService.getAllOrderCount());
 	}
 	
 	

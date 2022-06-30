@@ -45,7 +45,7 @@ public class ReportFormService {
         //设置数据	,数值,第几条线,分类
     	
         for(Orders t :list)
-        	dataset.addValue( t.getOrderPrice() , "营销额" , t.getOrderTime() );        
+        	dataset.addValue( t.getOrderPrice() , "营销额" , t.getOrderFinish() );        
 
     	JFreeChart jfreeChart = ChartFactory.createLineChart("当天营销额折线图","时间","营销额",
     			dataset, PlotOrientation.VERTICAL, true, false,
@@ -90,7 +90,7 @@ public class ReportFormService {
         //设置数据	,数值,第几条线,分类
     	
         for(Orders t :list)
-        	dataset.addValue( t.getOrderPrice() , "订单量" , t.getOrderTime() );        
+        	dataset.addValue( t.getOrderPrice() , "订单量" , t.getOrderFinish() );        
  
     	JFreeChart jfreeChart = ChartFactory.createLineChart("当天订单量折线图","时间","订单量",
     			dataset, PlotOrientation.VERTICAL, true, false,
@@ -131,18 +131,8 @@ public class ReportFormService {
 	public int getToDayOrderCount()
 	{
 		
-		Orders list = ordersMapper.selectByPrimaryKey(20);
-		Date date = new Date();
-		System.out.println((date==list.getOrderTime()));
-		System.out.println(list.getOrderTime().getTime()+"----"+date.getTime());
 		
-		return 0;
-		
-//		OrdersExample order = new OrdersExample();
-//		OrdersExample.Criteria criteria = order.createCriteria();
-//		criteria.andOrderTimeEqualTo(n);
-//		
-//		return (int)ordersMapper.countByExample(order);
+		return ordersMapper.selectToDaySortCount().getOrderId();
 		
 	}
 	
@@ -152,11 +142,12 @@ public class ReportFormService {
 	 * 获取今日营销额
 	 * @return float
 	 */
-//	public float getToDaySalesCount()
-//	{
-//		
-//		
-//	}
+	public float getToDaySalesCount()
+	{
+
+		return ordersMapper.selectToDaySortSales().getOrderPrice();
+		
+	}
 	
 	/**
 	 * 
@@ -175,11 +166,12 @@ public class ReportFormService {
 	 * 获取总营销额
 	 * @return float
 	 */
-//	public float getAllSalesCount()
-//	{
-//		
-//		
-//	}
+	public float getAllSalesCount()
+	{
+		
+		return ordersMapper.countSortSales().getOrderPrice();
+		
+	}
 	
 	
 	
