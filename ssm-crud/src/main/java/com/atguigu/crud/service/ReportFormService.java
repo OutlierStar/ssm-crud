@@ -1,6 +1,7 @@
 package com.atguigu.crud.service;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -38,14 +39,17 @@ public class ReportFormService {
 	{
 		
 		
+		
 		List<Orders> list= ordersMapper.selectSortPriceGroupByTime();
 		
 		
     	DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         //设置数据	,数值,第几条线,分类
+    	SimpleDateFormat sdf =
+                new SimpleDateFormat("yyyy-MM-dd");
     	
         for(Orders t :list)
-        	dataset.addValue( t.getOrderPrice() , "营销额" , t.getOrderFinish() );        
+        	dataset.addValue( t.getOrderPrice() , "营销额" , sdf.format(t.getOrderFinish()) );        
 
     	JFreeChart jfreeChart = ChartFactory.createLineChart("当天营销额折线图","时间","营销额",
     			dataset, PlotOrientation.VERTICAL, true, false,
@@ -88,9 +92,11 @@ public class ReportFormService {
 		List<Orders> list= ordersMapper.selectSortCountGroupByTime();
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         //设置数据	,数值,第几条线,分类
+		SimpleDateFormat sdf =
+                new SimpleDateFormat("yyyy-MM-dd");
     	
         for(Orders t :list)
-        	dataset.addValue( t.getOrderPrice() , "订单量" , t.getOrderFinish() );        
+        	dataset.addValue( t.getOrderPrice() , "订单量" , sdf.format(t.getOrderFinish()) );        
  
     	JFreeChart jfreeChart = ChartFactory.createLineChart("当天订单量折线图","时间","订单量",
     			dataset, PlotOrientation.VERTICAL, true, false,
