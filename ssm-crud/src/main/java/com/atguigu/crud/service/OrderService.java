@@ -1,5 +1,6 @@
 package com.atguigu.crud.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,6 +155,44 @@ public class OrderService {
 		
 	}
 	
+	/**
+	 * 通过订单ID获取订单
+	 * @param orderId
+	 * @return
+	 */
+	public Orders getOrderByOrderId(int orderId)
+	{
+		return ordersMapper.selectByPrimaryKey(orderId);
+		
+	}
+	
+	/***
+	 * 设置付款时间
+	 * @param orderId
+	 * @return boolean
+	 */
+	public boolean setPayTime(int orderId)
+	{
+		Orders t=getOrderByOrderId(orderId);
+		t.setOrderPayment(new Date());
+		updateOrder(t);
+		return true;
+		
+	}
+	/**
+	 * 设置完成时间
+	 * @param orderId
+	 * @return boolean
+	 */
+	public boolean setFinishTime(int orderId)
+	{
+		
+		Orders t=getOrderByOrderId(orderId);
+		t.setOrderFinish(new Date());
+		updateOrder(t);
+		return true;
+		
+	}
 	
 	
 }

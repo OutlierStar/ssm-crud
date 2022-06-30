@@ -2,6 +2,8 @@ package com.atguigu.crud.bean;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Orders {
     private Integer orderId;
 
@@ -15,10 +17,13 @@ public class Orders {
 
     private String orderRemarks;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date orderTime;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date orderPayment;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date orderFinish;
 
     public Integer getOrderId() {

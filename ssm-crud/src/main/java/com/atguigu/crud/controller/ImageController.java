@@ -80,11 +80,11 @@ public class ImageController {
 		            }  
 		        }  
 		  
-		        System.out.println("上传图片到:" + path +'/'+ newFileName);  
+		        System.out.println("上传图片到:" + path +"/"+ newFileName);  
 		        // 保存文件地址，用于JSP页面回显  
-		        model.addAttribute("fileUrl", path +'/'+ newFileName);  
+		        model.addAttribute("fileUrl", path +"/"+ newFileName);  
 		        
-		        String src = path +'/'+ newFileName;
+		        String src = path +"/"+ newFileName;
 				return Msg.success().add("path", src);
 		}
 	
