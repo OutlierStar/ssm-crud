@@ -2,6 +2,8 @@ package com.atguigu.crud.bean;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class User {
     private Integer userId;
 
@@ -10,7 +12,7 @@ public class User {
     private String userAccount;
 
     private String userPassword;
-
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     private Date userBirthday;
 
     private String userPhone;

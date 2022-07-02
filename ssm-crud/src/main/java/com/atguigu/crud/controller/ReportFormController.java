@@ -27,30 +27,22 @@ import com.atguigu.crud.dao.OrdersMapper;
 import com.atguigu.crud.service.ReportFormService;
 
 @RestController
-@RequestMapping("/123")
+@RequestMapping("/reportForm")
 @CrossOrigin //允许所有ip跨域
 public class ReportFormController {
 
 	@Autowired
 	private OrdersMapper ordersMapper;
 	
-	
-	
-	
-	
-	
 	/**
 	 * 生成营销额折线图，按时间分类
+	 * @return 
 	 * 
 	 */
-	@RequestMapping("/test2")
-	public void salesCountReport(HttpServletRequest request)
+	@RequestMapping("/salesCount")
+	public Msg salesCountReport(HttpServletRequest request)
 	{
-		
-		
-		
 		List<Orders> list= ordersMapper.selectSortPriceGroupByTime();
-		
 		
     	DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         //设置数据	,数值,第几条线,分类
@@ -63,9 +55,6 @@ public class ReportFormController {
     	JFreeChart jfreeChart = ChartFactory.createLineChart("当天营销额折线图","时间","营销额",
     			dataset, PlotOrientation.VERTICAL, true, false,
      			false);
-    	
-    	
-
     	
         CategoryPlot plot = jfreeChart.getCategoryPlot(); 
 
@@ -80,7 +69,11 @@ public class ReportFormController {
        int height = 480; /* Height of the image */ 
        String realPath = request.getSession().  
                getServletContext().getRealPath("/"); 
+       String contextPath = request.getContextPath();
+       String basePath = request.getScheme()+"://"+request.getServerName()+":"+  
+               request.getServerPort()+contextPath+"/";
        String path = realPath+"static\\images\\"+"营销额.png"; 
+//       String path = realPath+"static/images/"+"营销额.png"; 
        File pieChart = new File(path); 
        
        try {
@@ -90,15 +83,18 @@ public class ReportFormController {
  			e.printStackTrace();
  		}
 
+       String src = basePath + "static/images/营销额.png";
+		return Msg.success().add("path", src);
 		
 	}
 	
 	/**
 	 * 
 	 * 生成订单量折线图，按时间分类
+	 * @return 
 	 */
-	@RequestMapping("/test1")
-	public void sortCountReport(HttpServletRequest request)
+	@RequestMapping("/sortCount")
+	public Msg sortCountReport(HttpServletRequest request)
 	{
 		
 		List<Orders> list= ordersMapper.selectSortCountGroupByTime();
@@ -131,8 +127,11 @@ public class ReportFormController {
       
       String realPath = request.getSession().  
               getServletContext().getRealPath("/"); 
-      
+      String contextPath = request.getContextPath();
+      String basePath = request.getScheme()+"://"+request.getServerName()+":"+  
+              request.getServerPort()+contextPath+"/";
       String path = realPath+"static\\images\\"+"订单量.png";
+//      String path = realPath+"static/images/"+"订单量.png";
   
     
       File pieChart = new File(path); 
@@ -143,8 +142,8 @@ public class ReportFormController {
 			e.printStackTrace();
 		}
     	
-
-     
+      String src = basePath + "static/images/订单量.png";
+		return Msg.success().add("path", src);
 	}
 	
 //	/**

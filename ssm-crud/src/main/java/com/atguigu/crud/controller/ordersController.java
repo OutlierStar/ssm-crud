@@ -66,7 +66,7 @@ public class ordersController {
 			
 			orderService.setPayTime(orderId);
 			
-		}else if(status==3||status==0) {
+		}else if(status==4||status==0) {
 			
 			orderService.setFinishTime(orderId);
 		}
@@ -81,9 +81,9 @@ public class ordersController {
 	}
 	
 	@RequestMapping("/addComments")
-	public Msg addOrderComments(int orderId,String order_comment) {//增加评论
+	public Msg addOrderComments(int orderId,String orderComment) {//增加评论
 		
-		Orders neworder = orderService.commentOrder(orderId,order_comment);
+		Orders neworder = orderService.commentOrder(orderId,orderComment);
 		if(neworder!=null) {
 			
 			return Msg.success().add("order", neworder);
@@ -91,7 +91,7 @@ public class ordersController {
 		return Msg.fail().add("order", null);
 		
 	}
-	@RequestMapping("/addMark")
+	@RequestMapping("/addMark")	
 	public Msg addOrderMark(int orderId,String mark) {//增加备注
 		
 		Orders neworder = orderService.addOrderRemarks(orderId,mark);
@@ -100,6 +100,20 @@ public class ordersController {
 			return Msg.success().add("order", neworder);
 		}
 		return Msg.fail().add("order", null);
+		
+	}
+	
+	
+	
+	@RequestMapping("/addTable")	
+	public Msg addOrderMark(int orderId,int table) {//增加桌号
+		
+		boolean neworder = orderService.addOrderTable(orderId,table);
+		if(neworder==true) {
+			
+			return Msg.success();
+		}
+		return Msg.fail();
 		
 	}
 }

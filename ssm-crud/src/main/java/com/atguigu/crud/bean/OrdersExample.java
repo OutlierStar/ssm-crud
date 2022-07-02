@@ -225,6 +225,66 @@ public class OrdersExample {
             return (Criteria) this;
         }
 
+        public Criteria andOrderTableIsNull() {
+            addCriterion("order_table is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTableIsNotNull() {
+            addCriterion("order_table is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTableEqualTo(Integer value) {
+            addCriterion("order_table =", value, "orderTable");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTableNotEqualTo(Integer value) {
+            addCriterion("order_table <>", value, "orderTable");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTableGreaterThan(Integer value) {
+            addCriterion("order_table >", value, "orderTable");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTableGreaterThanOrEqualTo(Integer value) {
+            addCriterion("order_table >=", value, "orderTable");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTableLessThan(Integer value) {
+            addCriterion("order_table <", value, "orderTable");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTableLessThanOrEqualTo(Integer value) {
+            addCriterion("order_table <=", value, "orderTable");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTableIn(List<Integer> values) {
+            addCriterion("order_table in", values, "orderTable");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTableNotIn(List<Integer> values) {
+            addCriterion("order_table not in", values, "orderTable");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTableBetween(Integer value1, Integer value2) {
+            addCriterion("order_table between", value1, value2, "orderTable");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrderTableNotBetween(Integer value1, Integer value2) {
+            addCriterion("order_table not between", value1, value2, "orderTable");
+            return (Criteria) this;
+        }
+
         public Criteria andOrderStatusIsNull() {
             addCriterion("order_status is null");
             return (Criteria) this;

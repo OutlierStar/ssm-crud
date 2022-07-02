@@ -161,4 +161,5 @@
     set sort_name = #{sortName,jdbcType=VARCHAR}
     where sort_id = #{sortId,jdbcType=INTEGER}
   </update>
+  
 </mapper>

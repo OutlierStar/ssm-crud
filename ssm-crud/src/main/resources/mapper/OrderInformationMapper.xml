@@ -178,4 +178,5 @@
     where order_id = #{orderId,jdbcType=INTEGER}
       and meals_id = #{mealsId,jdbcType=INTEGER}
   </update>
+  
 </mapper>

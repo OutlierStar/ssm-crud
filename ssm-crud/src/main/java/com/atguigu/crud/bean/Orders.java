@@ -9,6 +9,8 @@ public class Orders {
 
     private Integer userId;
 
+    private Integer orderTable;
+
     private Integer orderStatus;
 
     private Float orderPrice;
@@ -16,14 +18,12 @@ public class Orders {
     private String orderComment;
 
     private String orderRemarks;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date orderTime;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date orderPayment;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date orderFinish;
 
     public Integer getOrderId() {
@@ -40,6 +40,14 @@ public class Orders {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Integer getOrderTable() {
+        return orderTable;
+    }
+
+    public void setOrderTable(Integer orderTable) {
+        this.orderTable = orderTable;
     }
 
     public Integer getOrderStatus() {

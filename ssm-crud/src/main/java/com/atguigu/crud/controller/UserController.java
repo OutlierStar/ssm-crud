@@ -50,7 +50,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/login")
-	public Msg login(HttpServletResponse response,User user) {//登录
+	public Msg login(HttpServletResponse response,@RequestBody User user) {//登录
 		
 		User userRight = userService.login(user.getUserAccount(), user.getUserPassword());
 		
@@ -122,7 +122,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/changeUser")
-	public Msg changeUser( User user) {//修改用户的信息
+	public Msg changeUser(@RequestBody User user) {//修改用户的信息
 		
 		boolean bool = userService.updateUser(user);
 		

@@ -52,15 +52,32 @@ public class ImageController {
 		  
 		        
 		     // 新文件名  
-		        String newFileName = mealsid+".jpg";  
+		        String newFileName = mealsid+".png";  
 		  
 		        // 获得项目的路径  
 		        //ServletContext sc = request.getSession().getServletContext();  
 		        // 上传位置  
 		       // String path = sc.getRealPath("/img") + "/"; // 设定文件保存的目录  
-		        String path = ClassUtils.getDefaultClassLoader().getResource("image").getPath();
+		        String path1 = ClassUtils.getDefaultClassLoader().getResource("image").getPath();
+		        String contextPath = request.getContextPath();      
+		        String realPath = request.getSession().  
+		                        getServletContext().getRealPath("/");      
+		        String basePath = request.getScheme()+"://"+request.getServerName()+":"+  
+		                        request.getServerPort()+contextPath+"/";  
+//		        windows文件路径
+//		        String path=realPath+"static\\images\\";
+		        
+//		        linux文件路径
+		        String path=realPath+"static/images/";
+		        
+		        System.out.println("path:" + path);  
+		        System.out.println("path1:" + path1);  
+		        System.out.println("contextPath:" + contextPath);  
+		        System.out.println("realPath:" + realPath);  
+		        System.out.println("basePath:" + basePath);  
 		        
 		        File f = new File(path); 
+		        System.out.println("f:---" + f.getPath());
 		        if (!f.exists())  
 		            f.mkdirs();  
 		        if (!file.isEmpty()) {  
@@ -77,26 +94,13 @@ public class ImageController {
 		                e.printStackTrace();  
 		            }  
 		        }  
-		  
+		        System.out.println("f:---+++++" + f.getPath());
 		        System.out.println("上传图片到:" + path +""+ newFileName);  
 		        // 保存文件地址，用于JSP页面回显  
-		        model.addAttribute("fileUrl", path +""+ newFileName);  
+		        model.addAttribute("fileUrl", basePath +""+ newFileName);  
 		        
-		        String src = path +""+ newFileName;
+		        String src = basePath +"static/images/"+ newFileName;
 				return Msg.success().add("path", src);
 		}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -240,4 +240,5 @@
       meals_sales = #{mealsSales,jdbcType=INTEGER}
     where meals_id = #{mealsId,jdbcType=INTEGER}
   </update>
+  
 </mapper>

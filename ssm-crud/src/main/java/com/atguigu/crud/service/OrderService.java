@@ -195,4 +195,23 @@ public class OrderService {
 	}
 	
 	
+	
+	/**
+	 * 
+	 * 添加桌号
+	 * @param orderId
+	 * @param table
+	 * @return
+	 */
+	public boolean addOrderTable(int orderId,int table)
+	{
+		Orders t=getOrderByOrderId(orderId);
+		t.setOrderTable(table);
+		updateOrder(t);
+		return true;
+		
+		
+	}
+	
+	
 }
